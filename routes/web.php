@@ -1,10 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\publisherController;
+use App\Http\Controllers\booksController;
 
-Route::get('/', function () {
-    return view('home');
-});
+
+//navigasi
+Route::get('/', [booksController::class, 'index']);
 Route::get('/about', function(){
     return view('about', ['nama' => 'Radot']);
 });
@@ -21,3 +23,10 @@ Route::get('/pengadaan', function () {
     return view('pengadaan');
 });
 
+
+//aksi
+Route::post('/publisher',[publisherController::class, 'store']);
+
+Route::post('/books', [booksController::class, 'store']);
+
+Route::delete('/books{id}', [booksController::class, 'destroy'])->name('buku.destroy');
