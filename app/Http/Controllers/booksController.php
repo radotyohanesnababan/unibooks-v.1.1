@@ -7,10 +7,15 @@ use Illuminate\Http\Request;
 
 class booksController extends Controller
 {
+
     public function index(){
         $books = books::all();
         return view('home', compact('books'));
     }
+
+    // public function search (Request $request){
+    //     $query
+    // }
 
     public function store(Request $request){
         $request->validate([

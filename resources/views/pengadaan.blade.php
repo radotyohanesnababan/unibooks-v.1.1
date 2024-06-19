@@ -107,17 +107,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="border-b border-gray-200 dark:border-gray-700">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
-                                    Apple MacBook Pro 17
-                                </th>
-                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
-                                    Silver
-                                </td>
-                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
-                                    Laptop
-                                </td>
-                            </tr>
+                            @foreach ($books as $item)
+                        <tr class="border-b border-gray-200 dark:border-gray-700" >
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200" >{{ $item->judul }}</th>
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">{{ $item->penulis }}</td>
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">{{ $item->tahun_terbit }}</td>
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">{{ $item->genre }}</td>
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">{{ $item->deskripsi }}</td>
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">{{ $item->stok }}</td>
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">{{ $item->isbn }}</td>
+                        </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

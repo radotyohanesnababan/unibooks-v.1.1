@@ -7,6 +7,7 @@ use App\Http\Controllers\booksController;
 
 //navigasi
 Route::get('/', [booksController::class, 'index']);
+Route::get('/pengadaan', [booksController::class, 'index']);
 Route::get('/about', function(){
     return view('about', ['nama' => 'Radot']);
 });
@@ -18,9 +19,6 @@ Route::get('/contact', function () {
 });
 Route::get('/admin', function () {
     return view('admin');
-});
-Route::get('/pengadaan', function () {
-    return view('pengadaan');
 });
 
 
