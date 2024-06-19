@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
+    <title>Admin</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -100,76 +100,47 @@
         <div class="p-4 mt-3 rounded-lg dark:border-gray-700">
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">
-                                Product name
+                                Judul
                             </th>
                             <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">
-                                Color
+                                Penulis
                             </th>
                             <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">
-                                Category
+                                Tahun Terbit
                             </th>
                             <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">
-                                Price
+                                Genre
                             </th>
                             <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">
-                                Action
+                                Deskripsi
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">
+                                Stok
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">
+                                ISBN
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="bg-white border-b dark:bg-gray-300 dark:border-gray-700">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
-                                Apple MacBook Pro 17"
-                            </th>
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
-                                Silver
-                            </td>
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
-                                Laptop
-                            </td>
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
-                                $2999
-                            </td>
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
-                                <a href="edit.php" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
+                        @forelse ($books as $item)
+                        <tr class="border-b border-gray-200 dark:border-gray-700" >
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200" >{{ $item->judul }}</th>
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">{{ $item->penulis }}</td>
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">{{ $item->tahun_terbit }}</td>
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">{{ $item->genre }}</td>
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">{{ $item->deskripsi }}</td>
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">{{ $item->stok }}</td>
+                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">{{ $item->isbn }}</td>
                         </tr>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
-                                Microsoft Surface Pro
-                            </th>
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
-                                White
-                            </td>
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
-                                Laptop PC
-                            </td>
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
-                                $1999
-                            </td>
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
-                                <a href="edit.php" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
+                        @empty
+                        <tr>
+                            <td colspan="7" class="px-6 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-300">No books found.</td>
                         </tr>
-                        <tr class="bg-white dark:bg-gray-800">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
-                                Magic Mouse 2
-                            </th>
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
-                                Black
-                            </td>
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
-                                Accessories
-                            </td>
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
-                                $99
-                            </td>
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
-                                <a href="edit.php" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            </td>
+                        @endforelse
                         </tr>
                     </tbody>
                 </table>

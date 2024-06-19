@@ -25,4 +25,5 @@ class publisherController extends Controller
         return response()->json(['message'=> 'Penerbit Ditambahkan'],201);
 
     }
+
 }

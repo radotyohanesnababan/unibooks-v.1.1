@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\books;
+use App\Models\publisher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class booksController extends Controller
 {
@@ -12,10 +14,22 @@ class booksController extends Controller
         $books = books::all();
         return view('home', compact('books'));
     }
-
-    // public function search (Request $request){
-    //     $query
-    // }
+    public function indexpengadaan(){
+        //$publisher = Publisher::find($id_penerbit);
+        //$books = books::where('id_penerbit', $id_penerbit)->get();
+        $books = books::with('publisher')->get();
+        //$publisher = publisher::all();
+        return view('pengadaan', compact('books'));
+    }
+    public function indexadmin(){
+        $books = books::all();
+        return view('admin', compact('books'));
+    }
+    public function search (Request $request){
+        $searchTerm = $request->input('search');
+        $books = books::where('judul', 'like', "%{$searchTerm}%")->get();
+        return view('home', compact('books'));
+    }
 
     public function store(Request $request){
         $request->validate([

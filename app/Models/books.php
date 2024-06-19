@@ -20,7 +20,7 @@ class books extends Model
         'isbn'
     ];
     public function publisher(){
-        return $this->belongsTo(publisher::class);
+        return $this->belongsTo(publisher::class, 'id_penerbit', 'id_penerbit');
     }
 
 }

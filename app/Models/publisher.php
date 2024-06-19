@@ -19,6 +19,6 @@ class publisher extends Model
     ];
 
     public function books(){
-        return $this->hasMany(books::class);
+        return $this->hasMany(books::class, 'id_penerbit');
     }
 }

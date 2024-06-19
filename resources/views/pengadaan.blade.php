@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
+    <title>Pengadaan</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -64,7 +64,7 @@
                  </a>
               </li>
               <li>
-                 <a href="/pengadaan" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-gray bg-gray-50 hover:bg-gray-200 dark:hover:bg-gray-200 group">
+                 <a href="pengadaan.blade.php" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-gray bg-gray-50 hover:bg-gray-200 dark:hover:bg-gray-200 group">
                     <svg class="w-[24px] h-[24px] text-gray dark:text-gray" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 19V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v13H7a2 2 0 0 0-2 2Zm0 0a2 2 0 0 0 2 2h12M9 3v14m7 0v4"/>
                       </svg>
@@ -99,25 +99,28 @@
                                     Judul
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">
-                                Penerbit
+                                    Penerbit
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">
                                     Stok
                                 </th>
+                        
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($books as $item)
-                        <tr class="border-b border-gray-200 dark:border-gray-700" >
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200" >{{ $item->judul }}</th>
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">{{ $item->penulis }}</td>
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">{{ $item->tahun_terbit }}</td>
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">{{ $item->genre }}</td>
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">{{ $item->deskripsi }}</td>
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">{{ $item->stok }}</td>
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">{{ $item->isbn }}</td>
-                        </tr>
-                        @endforeach
+                            @forelse ($books as $item)
+                            <tr class="border-b border-gray-200 dark:border-gray-700" >
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200" >{{ $item->judul }}</th>
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">{{ $item->publisher->nama_penerbit }}</td>
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">{{ $item->stok }}</td>
+                                
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="7" class="px-6 py-4 text-center text-sm font-medium text-gray-500 dark:text-gray-300">No books found.</td>
+                            </tr>
+                            @endforelse
+                            </tr>
                         </tbody>
                     </table>
                 </div>
