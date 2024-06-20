@@ -9,6 +9,8 @@ class books extends Model
 {
     use HasFactory;
     protected $table = 'tb_buku';
+    protected $primaryKey = 'id_buku';
+    protected $guarded = [];
     public $timestamps = false;
     protected $fillable = [
         'judul',

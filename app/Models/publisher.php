@@ -10,6 +10,7 @@ class publisher extends Model
     use HasFactory;
 
     protected $table = 'tb_penerbit';
+    protected $primarykey = 'id_penerbit';
     public $timestamps = false;
     protected $fillable = [
         'nama_penerbit',

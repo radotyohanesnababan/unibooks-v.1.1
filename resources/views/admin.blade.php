@@ -9,6 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     @vite('resources/css/app.css')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </head>
 <body>
@@ -105,6 +106,7 @@
                 <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">Judul</th>
+                        <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">ID Buku</th>
                         <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">Penulis</th>
                         <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">Tahun Terbit</th>
                         <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">Genre</th>
@@ -117,7 +119,9 @@
                 <tbody id="booksTableBody">
                     @forelse ($books as $item)
                     <tr class="border-b border-gray-200 dark:border-gray-700">
+                        
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">{{ $item->judul }}</th>
+                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">{{ $item->id_buku }}</td>
                         <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">{{ $item->penulis }}</td>
                         <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">{{ $item->tahun_terbit }}</td>
                         <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">{{ $item->genre }}</td>
@@ -130,11 +134,39 @@
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
                                 </svg>
                             </button>
-                            <button class="text-red-600 hover:text-red-800" onclick="deleteBook(this)">
+                            <button data-modal-target="popup-modal-{{ $item->id_buku }}" data-modal-toggle="popup-modal-{{ $item->id_buku }}"  class="text-red-600 hover:text-red-800">
                                 <svg class="w-6 h-6 text-red-600 hover:text-red-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
                                 </svg>
                             </button>
+                            <div  id="popup-modal-{{ $item->id_buku }}" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                <div class="relative p-4 w-full max-w-md max-h-full">
+                                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                        <button type="button"data-modal-hide="popup-modal-{{ $item->id_buku }}" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal">
+                                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                            </svg>
+                                            <span class="sr-only">Close modal</span>
+                                        </button>
+                                        <div class="p-4 md:p-5 text-center">
+                                            <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                                            </svg>
+                                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Apakah Anda yakin ingin menghapus buku ini?</h3>
+                                            <form action="{{ route('buku.destroy', $item->id_buku) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                                                    Ya
+                                                </button>
+                                                <button data-modal-hide="popup-modal-{{ $item->id_buku }}" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                                                    Tidak
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     @empty
@@ -148,12 +180,13 @@
     </div>
 </div>
 <!-- Modal -->
-<div id="modal" class="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50 hidden">
+<div id="modal" class="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50 z-50 hidden">
     <div class="relative p-5 border w-full max-w-lg shadow-lg rounded-md bg-white">
         <div class="mt-3 text-center">
             <h3 class="text-lg leading-6 font-medium text-gray-900">Tambah Buku Baru</h3>
             <div class="mt-4">
-                <form id="addBookForm" class="grid grid-cols-1 gap-6">
+                <form method="POST" action="{{ route('store_books') }}" id="addBookForm" class="grid grid-cols-1 gap-6" >
+                    @csrf
                     <div class="flex items-center">
                         <label for="judul" class="w-1/4 text-gray-700 text-sm font-bold">Judul:</label>
                         <input type="text" id="judul" name="judul" class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
@@ -164,12 +197,11 @@
                     </div>
                     <div class="flex items-center">
                         <label for="penerbit" class="w-1/4 text-gray-700 text-sm font-bold">Penerbit:</label>
-                        <select id="penerbit" name="penerbit" class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                        <select id="penerbit" name="nama_penerbit" class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
                             <option value="">Select Penerbit</option>
-                            <!-- Example options, replace with your dynamic data -->
-                            <option value="Penerbit A">Penerbit A</option>
-                            <option value="Penerbit B">Penerbit B</option>
-                            <option value="Penerbit C">Penerbit C</option>
+                            @foreach ($publisher as $items)
+                                <option value="{{ $items->nama_penerbit }}">{{ $items->nama_penerbit }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="flex items-center">
@@ -201,97 +233,12 @@
         </div>
     </div>
 </div>
-<script>
-    // JavaScript to handle modal open and close
-    const openModalBtn = document.getElementById('openModalBtn');
-    const closeModalBtn = document.getElementById('closeModalBtn');
-    const modal = document.getElementById('modal');
 
-    openModalBtn.addEventListener('click', () => {
-        modal.classList.remove('hidden');
-    });
-
-    closeModalBtn.addEventListener('click', () => {
-        modal.classList.add('hidden');
-    });
-
-    // Close modal when clicking outside of the modal
-    window.addEventListener('click', (event) => {
-        if (event.target == modal) {
-            modal.classList.add('hidden');
-        }
-    });
-
-    // Handle form submission
-    document.getElementById('addBookForm').addEventListener('submit', (event) => {
-        event.preventDefault();
-
-        // Get form data
-        const judul = document.getElementById('judul').value;
-        const penulis = document.getElementById('penulis').value;
-        const tahun_terbit = document.getElementById('tahun_terbit').value;
-        const genre = document.getElementById('genre').value;
-        const deskripsi = document.getElementById('deskripsi').value;
-        const stok = document.getElementById('stok').value;
-        const isbn = document.getElementById('isbn').value;
-
-        // Add new row to the table
-        const tableBody = document.getElementById('booksTableBody');
-        const newRow = document.createElement('tr');
-        newRow.classList.add('border-b', 'border-gray-200', 'dark:border-gray-700');
-        newRow.innerHTML = `
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">${judul}</th>
-            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">${penulis}</td>
-            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">${tahun_terbit}</td>
-            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">${genre}</td>
-            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">${deskripsi}</td>
-            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">${stok}</td>
-            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">${isbn}</td>
-            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
-                <button class="text-blue-600 hover:text-blue-800" onclick="editBook(this)">Edit</button>
-                <button class="text-red-600 hover:text-red-800" onclick="deleteBook(this)">Delete</button>
-            </td>
-        `;
-        tableBody.appendChild(newRow);
-
-        // Clear the form
-        document.getElementById('addBookForm').reset();
-
-        // Hide the modal
-        modal.classList.add('hidden');
-    });
-
-    // Function to delete a book
-    function deleteBook(button) {
-        const row = button.closest('tr');
-        row.remove();
-    }
-
-    // Function to edit a book
-    function editBook(button) {
-        const row = button.closest('tr');
-        const judul = row.children[0].innerText;
-        const penulis = row.children[1].innerText;
-        const tahun_terbit = row.children[2].innerText;
-        const genre = row.children[3].innerText;
-        const deskripsi = row.children[4].innerText;
-        const stok = row.children[5].innerText;
-        const isbn = row.children[6].innerText;
-
-        // Open modal with pre-filled data
-        openModalBtn.click();
-        document.getElementById('judul').value = judul;
-        document.getElementById('penulis').value = penulis;
-        document.getElementById('tahun_terbit').value = tahun_terbit;
-        document.getElementById('genre').value = genre;
-        document.getElementById('deskripsi').value = deskripsi;
-        document.getElementById('stok').value = stok;
-        document.getElementById('isbn').value = isbn;
-
-        // Remove the old row after editing
-        row.remove();
-    }
-</script>
-
+@if(session('success'))
+<div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+    <span class="block sm:inline">{{ session('success') }}</span>
+</div>
+@endif
+<script src="{{ asset('js/modal.js') }}"></script>
 </body>
 </html>

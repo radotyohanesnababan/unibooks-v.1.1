@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\publisherController;
 use App\Http\Controllers\booksController;
@@ -7,26 +8,23 @@ use App\Http\Controllers\booksController;
 
 //navigasi
 Route::get('/', [booksController::class, 'index']);
-Route::get('/pengadaan', [booksController::class, 'indexpengadaan']);
-Route::get('/admin', [booksController::class, 'indexadmin']);
-
-Route::get('/about', function(){
-    return view('about', ['nama' => 'Radot']);
-});
-Route::get('/blog', function () {
-    return view('blog');
-});
-Route::get('/contact', function () {
-    return view('contact');
-});
+Route::get('/pengadaan', [AdminController::class, 'indexpengadaan']);
+Route::get('/admin', [AdminController::class, 'index'])->name('get_books');
 
 
-//aksi
+//aksi-unibooks
 
+//search
 Route::get('/books',[booksController::class, 'search'])->name('books.search');
+//add
+Route::post('/admin', [AdminController::class, 'store'])->name('store_books');
 
+//add-publisher
 Route::post('/publisher',[publisherController::class, 'store']);
 
-Route::post('/books', [booksController::class, 'store']);
+//delete
+Route::delete('/books/{id_buku}', [AdminController::class, 'destroy'])->name('buku.destroy');
+//update
 
-Route::delete('/books{id}', [booksController::class, 'destroy'])->name('buku.destroy');
+//show-development-only
+Route::get('/books/{id_buku}', [AdminController::class, 'show'])->name('buku.show');

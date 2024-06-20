@@ -14,13 +14,7 @@ class booksController extends Controller
         $books = books::all();
         return view('home', compact('books'));
     }
-    public function indexpengadaan(){
-        //$publisher = Publisher::find($id_penerbit);
-        //$books = books::where('id_penerbit', $id_penerbit)->get();
-        $books = books::with('publisher')->get();
-        //$publisher = publisher::all();
-        return view('pengadaan', compact('books'));
-    }
+    
     public function indexadmin(){
         $books = books::all();
         return view('admin', compact('books'));
@@ -31,39 +25,40 @@ class booksController extends Controller
         return view('home', compact('books'));
     }
 
-    public function store(Request $request){
-        $request->validate([
-            'judul' => 'required|string|max:255',
-            'penulis'=>'required|string|max:255',
-            'tahun_terbit'=> 'required|integer',
-            'id_penerbit'=> 'required|integer',
-            'genre'=> 'required|string|max:100',
-            'deskripsi'=> 'required|string',
-            'stok'=>'required|integer',
-            'isbn'=>'required|string|max:13'
-        ]);
+    public function store(Request $request)
+{
+    $request->validate([
+        'judul' => 'required|string|max:255',
+        'penulis' => 'required|string|max:255',
+        'tahun_terbit' => 'required|integer',
+        'nama_penerbit' => 'required|string|max:255',
+        'genre' => 'required|string|max:100',
+        'deskripsi' => 'required|string',
+        'stok' => 'required|integer',
+        'isbn' => 'required|string|max:13'
+    ]);
 
-        $books = new books();
-        $books->judul = $request->input('judul');
-        $books->penulis = $request->input('penulis');
-        $books->tahun_terbit = $request->input('tahun_terbit');
-        $books->id_penerbit = $request->input('id_penerbit');
-        $books->genre = $request->input('genre');
-        $books->deskripsi = $request->input('deskripsi');
-        $books->stok= $request->input('stok');
-        $books->isbn = $request->input('isbn');
-        $books->save();
+    // Temukan penerbit berdasarkan nama_penerbit dari request
+    $publisher = Publisher::where('nama_penerbit', $request->input('nama_penerbit'))->first();
 
-        return response()->json(['message'=> 'Buku Ditambahkan!'],201);
-
+    if (!$publisher) {
+        return response()->json(['error' => 'Penerbit tidak ditemukan'], 404);
     }
 
-    public function destroy($id){
-        $books = books::findOrFail($id);
-        $books->delete();
+    // Buat instance baru dari model Books
+    $book = new Books();
+    $book->judul = $request->input('judul');
+    $book->penulis = $request->input('penulis');
+    $book->tahun_terbit = $request->input('tahun_terbit');
+    $book->id_penerbit = $publisher->id_penerbit; // Sesuaikan dengan nama kolom yang benar
+    $book->genre = $request->input('genre');
+    $book->deskripsi = $request->input('deskripsi');
+    $book->stok = $request->input('stok');
+    $book->isbn = $request->input('isbn');
+    $book->save();
 
-        return redirect()->route('buku.index')->with('success', 'Buku Berhasil Dihapus.');
-    }
+    return response()->json(['message' => 'Data buku berhasil disimpan'], 201);
+}
 
 
 }
