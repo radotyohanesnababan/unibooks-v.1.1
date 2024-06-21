@@ -25,6 +25,7 @@ Route::post('/publisher',[publisherController::class, 'store']);
 //delete
 Route::delete('/books/{id_buku}', [AdminController::class, 'destroy'])->name('buku.destroy');
 //update
+Route::put('books/{id_buku}', [AdminController::class, 'update'])->name('books.update');
 
 //show-development-only
 Route::get('/books/{id_buku}', [AdminController::class, 'show'])->name('buku.show');

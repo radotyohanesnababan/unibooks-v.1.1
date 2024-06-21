@@ -58,30 +58,18 @@
         modal.classList.add('hidden');
     });
 
-    // Function to delete a book
-    function deleteBook(button) {
-        const id_buku = button.getAttribute('id_buku');
-
-        fetch (`/books/${id_buku}`),{
-            method : 'DELETE',
-            headers:{
-                
-            }
-        }
-    }
-    
 
     // Function to edit a book
     function editBook(button) {
         const row = button.closest('tr');
         const judul = row.children[0].innerText;
-        const penulis = row.children[1].innerText;
-        const nama_penerbit = row.children[2].innerText;
-        const tahun_terbit = row.children[3].innerText;
-        const genre = row.children[4].innerText;
-        const deskripsi = row.children[5].innerText;
-        const stok = row.children[6].innerText;
-        const isbn = row.children[7].innerText;
+        const penulis = row.children[2].innerText;
+        const nama_penerbit = row.children[3].innerText;
+        const tahun_terbit = row.children[4].innerText;
+        const genre = row.children[5].innerText;
+        const deskripsi = row.children[6].innerText;
+        const stok = row.children[7].innerText;
+        const isbn = row.children[8].innerText;
 
         // Open modal with pre-filled data
         openModalBtn.click();

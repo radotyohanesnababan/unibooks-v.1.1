@@ -55,13 +55,46 @@ class AdminController extends Controller
         $books = books::findOrFail($id_buku);
         $books->delete(); 
         
-        //return response()->json(['message' => 'Book deleted successfully.'],200);
-        return redirect()->route('get_books')->with(['success'=>'Data berhasil dihapus!']);
+        //return response()->json(['message' => 'Book deleted successfully.'],201);
+        return redirect()->route('get_books')->with(['success'=>'Buku berhasil dihapus!']);
     }
 
     public function show($id_buku){
         $books = books::findOrFail($id_buku);
         return response()->json(($books));
+    }
+
+    
+
+    public function update(Request $request, $id_buku){
+        $books=books::findOrFail($id_buku);
+
+        $request->validate([
+            'judul' => 'required|string|max:255',
+            'penulis' => 'required|string|max:255',
+            'nama_penerbit' => 'required|string|max:255',
+            'tahun_terbit' => 'required|integer',
+            'genre' => 'required|string|max:100',
+            'deskripsi' => 'required|string',
+            'stok' => 'required|integer',
+            'isbn' => 'required|string|max:13'
+        ]);
+
+        //ambil nama publisher convert to id
+        $publisher = publisher::where('nama_penerbit', $request->input('nama_penerbit'))->first();
+
+        
+        $books->judul = $request->judul;
+        $books->penulis = $request->penulis;
+        $books->id_penerbit = $publisher->id_penerbit;
+        $books->tahun_terbit = $request->tahun_terbit;
+        $books->genre = $request->genre;
+        $books->deskripsi = $request->deskripsi;
+        $books->stok = $request->stok;
+        $books->isbn = $request->isbn;
+        $books->save();
+        return response()->json(['message' => 'Buku berhasil diperbaui.'],200);
+        //return redirect()->route('get_books')->with(['success'=>'Buku Berhasil Diperbaharui']);
     }
 
     
