@@ -10,7 +10,7 @@ use Illuminate\Http\RedirectResponse;
 class AdminController extends Controller
 {
     public function index(){
-        $books = books::all();
+        $books = books::orderBy('judul')->get();
         $publisher = publisher::all();
         return view('admin', compact('books','publisher'));
     }
@@ -24,7 +24,7 @@ class AdminController extends Controller
     //addbooks
     public function store(Request $request)
     {
-           
+        //dd($request->all());
         $request->validate([
             'judul' => 'required|string|max:255',
             'penulis' => 'required|string|max:255',
@@ -52,6 +52,8 @@ class AdminController extends Controller
     }
 
     public function destroy( $id_buku){
+
+        //dd($id_buku);
         $books = books::findOrFail($id_buku);
         $books->delete(); 
         
@@ -64,9 +66,8 @@ class AdminController extends Controller
         return response()->json(($books));
     }
 
-    
-
     public function update(Request $request, $id_buku){
+        // dd($request->all());
         $books=books::findOrFail($id_buku);
 
         $request->validate([
@@ -82,8 +83,6 @@ class AdminController extends Controller
 
         //ambil nama publisher convert to id
         $publisher = publisher::where('nama_penerbit', $request->input('nama_penerbit'))->first();
-
-        
         $books->judul = $request->judul;
         $books->penulis = $request->penulis;
         $books->id_penerbit = $publisher->id_penerbit;
@@ -93,8 +92,8 @@ class AdminController extends Controller
         $books->stok = $request->stok;
         $books->isbn = $request->isbn;
         $books->save();
-        return response()->json(['message' => 'Buku berhasil diperbaui.'],200);
-        //return redirect()->route('get_books')->with(['success'=>'Buku Berhasil Diperbaharui']);
+        //return response()->json(['message' => 'Buku berhasil diperbaui.'],200);
+        return redirect()->route('get_books')->with(['success'=>'Buku Berhasil Diperbaharui']);
     }
 
     

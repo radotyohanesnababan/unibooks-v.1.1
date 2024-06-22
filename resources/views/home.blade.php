@@ -196,10 +196,14 @@
                 </table>
             </div>
         </div>
+        <footer class="bg-white rounded-lg m-2 light:bg-gray-800" style="bottom:0 ; width:fit-content">
+            <div class="w-full max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+                <span class="text-sm font-bold text-gray-900 sm:text-center dark:text-gray-900">© 2024 <a
+                        href="https://google.com/" class="hover:underline">Unibooks™</a>. All Rights Reserved.
+                </span>
+            </div>
+        </footer>
     </div>
-
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 
 </body>

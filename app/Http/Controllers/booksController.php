@@ -11,12 +11,14 @@ class booksController extends Controller
 {
 
     public function index(){
-        $books = books::all();
+        $books = books::orderBy('judul')->get();
         return view('home', compact('books'));
     }
     
     public function indexadmin(){
-        $books = books::all();
+        $books = books::all()
+            ->orderBy('judul', 'asc')
+            ->get();
         return view('admin', compact('books'));
     }
     public function search (Request $request){

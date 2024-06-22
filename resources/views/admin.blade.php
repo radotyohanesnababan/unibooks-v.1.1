@@ -12,7 +12,6 @@
     @vite('resources/css/app.css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-    <link rel="stylesheet" href="../../public/css/style.css">
 </head>
 
 <body>
@@ -128,7 +127,6 @@
             </ul>
         </div>
     </aside>
-
     <div class="mt-12 p-4 sm:ml-64">
         <div class="flex justify-end">
             <div class="mt-0">
@@ -192,7 +190,97 @@
                                     {{ $item->isbn }}</td>
                                 <td
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
-                                    <button class="text-blue-600 hover:text-blue-800" onclick="editBook(this)">
+
+                                    <div id="modalEdit"
+                                        class="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50 z-50 hidden">
+                                        <div class="relative p-5 border w-full max-w-lg shadow-lg rounded-md bg-white">
+                                            <div class="mt-3 text-center">
+                                                <h3 class="text-lg leading-6 font-medium text-gray-900">Edit Buku</h3>
+                                                <div class="mt-4">
+                                                    <form method="POST"
+                                                        action="{{ route('books.update', $item->id_buku) }}"
+                                                        id="editBookForm" class="grid grid-cols-1 gap-6 ">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <div class="flex items-center">
+                                                            <label for="judul"
+                                                                class="w-1/4 text-gray-700 text-sm font-bold">Judul:</label>
+                                                            <input type="text" id="judul" name="judul"
+                                                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                                required>
+                                                        </div>
+                                                        <div class="flex items-center">
+                                                            <label for="penulis"
+                                                                class="w-1/4 text-gray-700 text-sm font-bold">Penulis:</label>
+                                                            <input type="text" id="penulis" name="penulis"
+                                                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                                required>
+                                                        </div>
+                                                        <div class="flex items-center">
+                                                            <label for="penerbit"
+                                                                class="w-1/4 text-gray-700 text-sm font-bold">Penerbit:</label>
+                                                            <select id="penerbit" name="nama_penerbit"
+                                                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                                required>
+                                                                <option value="">Select Penerbit</option>
+                                                                @foreach ($publisher as $items)
+                                                                    <option value="{{ $items->nama_penerbit }}">
+                                                                        {{ $items->nama_penerbit }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                        <div class="flex items-center">
+                                                            <label for="tahun_terbit"
+                                                                class="w-1/4 text-gray-700 text-sm font-bold">Tahun
+                                                                Terbit:</label>
+                                                            <input type="number" id="tahun_terbit"
+                                                                name="tahun_terbit"
+                                                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                                required>
+                                                        </div>
+                                                        <div class="flex items-center">
+                                                            <label for="genre"
+                                                                class="w-1/4 text-gray-700 text-sm font-bold">Genre:</label>
+                                                            <input type="text" id="genre" name="genre"
+                                                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                                required>
+                                                        </div>
+                                                        <div class="flex items-center">
+                                                            <label for="deskripsi"
+                                                                class="w-1/4 text-gray-700 text-sm font-bold">Deskripsi:</label>
+                                                            <textarea id="deskripsi" name="deskripsi"
+                                                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                                required></textarea>
+                                                        </div>
+                                                        <div class="flex items-center">
+                                                            <label for="stok"
+                                                                class="w-1/4 text-gray-700 text-sm font-bold">Stok:</label>
+                                                            <input type="number" id="stok" name="stok"
+                                                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                                required>
+                                                        </div>
+                                                        <div class="flex items-center">
+                                                            <label for="isbn"
+                                                                class="w-1/4 text-gray-700 text-sm font-bold">ISBN:</label>
+                                                            <input type="text" id="isbn" name="isbn"
+                                                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                                required>
+                                                        </div>
+                                                        <div class="flex justify-between items-center mt-4">
+                                                            <div class=" flex items-center justify-between ">
+                                                                <button type="submit"
+                                                                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Simpan</button>
+                                                            </div>
+                                                            <button type="button" id="closeModalEditBtn"
+                                                                    class="text-gray-500 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-md text-sm font-medium py-2 px-4">Batal</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button id="openModalEditBtn" class="text-blue-600 hover:text-blue-800"
+                                        onclick="editBook(this)">
                                         <svg class="w-6 h-6 text-blue-600 hover:text-blue-800" aria-hidden="true"
                                             xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             fill="none" viewBox="0 0 24 24">
@@ -201,6 +289,97 @@
                                                 d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z" />
                                         </svg>
                                     </button>
+
+                                    <div id="modal"
+                                        class="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50 z-50 hidden">
+                                        <div class="relative p-5 border w-full max-w-lg shadow-lg rounded-md bg-white">
+                                            <div class="mt-3 text-center">
+                                                <h3 class="text-lg leading-6 font-medium text-gray-900">Tambah
+                                                    Buku</h3>
+                                                <div class="mt-4">
+                                                    <form method="POST" action="{{ route('store_books') }}"
+                                                        id="addBookForm" class="grid grid-cols-1 gap-6">
+                                                        @csrf
+                                                        <div class="flex items-center">
+                                                            <label for="judul"
+                                                                class="w-1/4 text-gray-700 text-sm font-bold">Judul:</label>
+                                                            <input type="text" id="judul" name="judul"
+                                                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                                required>
+                                                        </div>
+                                                        <div class="flex items-center">
+                                                            <label for="penulis"
+                                                                class="w-1/4 text-gray-700 text-sm font-bold">Penulis:</label>
+                                                            <input type="text" id="penulis" name="penulis"
+                                                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                                required>
+                                                        </div>
+                                                        <div class="flex items-center">
+                                                            <label for="penerbit"
+                                                                class="w-1/4 text-gray-700 text-sm font-bold">Penerbit:</label>
+                                                            <select id="penerbit" name="nama_penerbit"
+                                                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                                required>
+                                                                <option value="">Select Penerbit</option>
+                                                                @foreach ($publisher as $items)
+                                                                    <option value="{{ $items->nama_penerbit }}">
+                                                                        {{ $items->nama_penerbit }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                        <div class="flex items-center">
+                                                            <label for="tahun_terbit"
+                                                                class="w-1/4 text-gray-700 text-sm font-bold">Tahun
+                                                                Terbit:</label>
+                                                            <input type="number" id="tahun_terbit"
+                                                                name="tahun_terbit"
+                                                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                                required>
+                                                        </div>
+                                                        <div class="flex items-center">
+                                                            <label for="genre"
+                                                                class="w-1/4 text-gray-700 text-sm font-bold">Genre:</label>
+                                                            <input type="text" id="genre" name="genre"
+                                                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                                required>
+                                                        </div>
+                                                        <div class="flex items-center">
+                                                            <label for="deskripsi"
+                                                                class="w-1/4 text-gray-700 text-sm font-bold">Deskripsi:</label>
+                                                            <textarea id="deskripsi" name="deskripsi"
+                                                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                                required></textarea>
+                                                        </div>
+                                                        <div class="flex items-center">
+                                                            <label for="stok"
+                                                                class="w-1/4 text-gray-700 text-sm font-bold">Stok:</label>
+                                                            <input type="number" id="stok" name="stok"
+                                                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                                required>
+                                                        </div>
+                                                        <div class="flex items-center">
+                                                            <label for="isbn"
+                                                                class="w-1/4 text-gray-700 text-sm font-bold">ISBN:</label>
+                                                            <input type="text" id="isbn" name="isbn"
+                                                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                                required>
+                                                        </div>
+                                                        <div class="flex justify-between items-center mt-4">
+                                                            <div class=" flex items-center justify-between ">
+                                                                <button type="submit"
+                                                                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Simpan</button>
+                                                            </div>
+                                                            <button type="button" id="closeModalBtn"
+                                                                    class="text-gray-500 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-md text-sm font-medium py-2 px-4">Batal</button>
+                                                        </div>
+                                                        
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                     <button data-modal-target="popup-modal-{{ $item->id_buku }}"
                                         data-modal-toggle="popup-modal-{{ $item->id_buku }}"
                                         class="text-red-600 hover:text-red-800">
@@ -271,164 +450,21 @@
                 </table>
             </div>
         </div>
-    </div>
-    <!-- Modal Add -->
-    <div id="modal" class="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50 z-50 hidden">
-        <div class="relative p-5 border w-full max-w-lg shadow-lg rounded-md bg-white">
-            <div class="mt-3 text-center">
-                <h3 class="text-lg leading-6 font-medium text-gray-900">Tambah Buku Baru</h3>
-                <div class="mt-4">
-                    <form method="POST" action="{{ route('store_books') }}" id="addBookForm"
-                        class="grid grid-cols-1 gap-6">
-                        @csrf
-                        <div class="flex items-center">
-                            <label for="judul" class="w-1/4 text-gray-700 text-sm font-bold">Judul:</label>
-                            <input type="text" id="judul" name="judul"
-                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required>
-                        </div>
-                        <div class="flex items-center">
-                            <label for="penulis" class="w-1/4 text-gray-700 text-sm font-bold">Penulis:</label>
-                            <input type="text" id="penulis" name="penulis"
-                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required>
-                        </div>
-                        <div class="flex items-center">
-                            <label for="penerbit" class="w-1/4 text-gray-700 text-sm font-bold">Penerbit:</label>
-                            <select id="penerbit" name="nama_penerbit"
-                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required>
-                                <option value="">Select Penerbit</option>
-                                @foreach ($publisher as $items)
-                                    <option value="{{ $items->nama_penerbit }}">{{ $items->nama_penerbit }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="flex items-center">
-                            <label for="tahun_terbit" class="w-1/4 text-gray-700 text-sm font-bold">Tahun
-                                Terbit:</label>
-                            <input type="number" id="tahun_terbit" name="tahun_terbit"
-                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required>
-                        </div>
-                        <div class="flex items-center">
-                            <label for="genre" class="w-1/4 text-gray-700 text-sm font-bold">Genre:</label>
-                            <input type="text" id="genre" name="genre"
-                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required>
-                        </div>
-                        <div class="flex items-center">
-                            <label for="deskripsi" class="w-1/4 text-gray-700 text-sm font-bold">Deskripsi:</label>
-                            <textarea id="deskripsi" name="deskripsi"
-                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required></textarea>
-                        </div>
-                        <div class="flex items-center">
-                            <label for="stok" class="w-1/4 text-gray-700 text-sm font-bold">Stok:</label>
-                            <input type="number" id="stok" name="stok"
-                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required>
-                        </div>
-                        <div class="flex items-center">
-                            <label for="isbn" class="w-1/4 text-gray-700 text-sm font-bold">ISBN:</label>
-                            <input type="text" id="isbn" name="isbn"
-                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required>
-                        </div>
-                        <div class="flex items-center justify-between mt-4">
-                            <button type="submit"
-                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Simpan</button>
-                            <button type="button" id="closeModalBtn"
-                                class="text-gray-500 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-md text-sm font-medium py-2 px-4">Batal</button>
-                        </div>
-                    </form>
-                </div>
+        @if (session('success'))
+            <div
+                class="bg-green-100 border font-semibold border-green-400 text-green-700 px-4 py-3 rounded relative text-center">
+                {{ session('success') }}
             </div>
-        </div>
-    </div>
-
-    <!-- Modal Edit -->
-    <div id="modal" class="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50 z-50 hidden">
-        <div class="relative p-5 border w-full max-w-lg shadow-lg rounded-md bg-white">
-            <div class="mt-3 text-center">
-                <h3 class="text-lg leading-6 font-medium text-gray-900">Edit Buku</h3>
-                <div class="mt-4">
-                    <form method="POST" action="{{ route('store_books') }}" id="addBookForm"
-                        class="grid grid-cols-1 gap-6">
-                        @csrf
-                        <div class="flex items-center">
-                            <label for="judul" class="w-1/4 text-gray-700 text-sm font-bold">Judul:</label>
-                            <input type="text" id="judul" name="judul"
-                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required>
-                        </div>
-                        <div class="flex items-center">
-                            <label for="penulis" class="w-1/4 text-gray-700 text-sm font-bold">Penulis:</label>
-                            <input type="text" id="penulis" name="penulis"
-                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required>
-                        </div>
-                        <div class="flex items-center">
-                            <label for="penerbit" class="w-1/4 text-gray-700 text-sm font-bold">Penerbit:</label>
-                            <select id="penerbit" name="nama_penerbit"
-                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required>
-                                <option value="">Select Penerbit</option>
-                                @foreach ($publisher as $items)
-                                    <option value="{{ $items->nama_penerbit }}">{{ $items->nama_penerbit }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="flex items-center">
-                            <label for="tahun_terbit" class="w-1/4 text-gray-700 text-sm font-bold">Tahun
-                                Terbit:</label>
-                            <input type="number" id="tahun_terbit" name="tahun_terbit"
-                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required>
-                        </div>
-                        <div class="flex items-center">
-                            <label for="genre" class="w-1/4 text-gray-700 text-sm font-bold">Genre:</label>
-                            <input type="text" id="genre" name="genre"
-                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required>
-                        </div>
-                        <div class="flex items-center">
-                            <label for="deskripsi" class="w-1/4 text-gray-700 text-sm font-bold">Deskripsi:</label>
-                            <textarea id="deskripsi" name="deskripsi"
-                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required></textarea>
-                        </div>
-                        <div class="flex items-center">
-                            <label for="stok" class="w-1/4 text-gray-700 text-sm font-bold">Stok:</label>
-                            <input type="number" id="stok" name="stok"
-                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required>
-                        </div>
-                        <div class="flex items-center">
-                            <label for="isbn" class="w-1/4 text-gray-700 text-sm font-bold">ISBN:</label>
-                            <input type="text" id="isbn" name="isbn"
-                                class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required>
-                        </div>
-                        <div class="flex items-center justify-between mt-4">
-                            <button type="submit"
-                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Simpan</button>
-                            <button type="button" id="closeModalBtn"
-                                class="text-gray-500 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-md text-sm font-medium py-2 px-4">Batal</button>
-                        </div>
-                    </form>
-                </div>
+        @endif
+        <footer class="bg-white rounded-lg m-2 light:bg-gray-800" style="bottom:0 ; width:fit-content">
+            <div class="w-full max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+                <span class="text-sm font-bold text-gray-900 sm:text-center dark:text-gray-900">© 2024 <a
+                        href="https://google.com/" class="hover:underline">Unibooks™</a>. All Rights Reserved.
+                </span>
             </div>
-        </div>
+        </footer>
     </div>
-
-    @if (session('success'))
-        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative text-center">
-            {{ session('success') }}
-        </div>
-    @endif
     <script src="{{ asset('js/modal.js') }}"></script>
-
 </body>
 
 </html>
