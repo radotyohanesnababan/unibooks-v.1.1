@@ -12,20 +12,17 @@ Route::get('/pengadaan', [AdminController::class, 'indexpengadaan']);
 Route::get('/admin', [AdminController::class, 'index'])->name('get_books');
 
 
-//aksi-unibooks
+//aksi
 
 //search
 Route::get('/books',[booksController::class, 'search'])->name('books.search');
-//add
+//add-books
 Route::post('/admin', [AdminController::class, 'store'])->name('store_books');
-
 //add-publisher
 Route::post('/publisher',[publisherController::class, 'store']);
-
 //delete
 Route::delete('/books/{id_buku}', [AdminController::class, 'destroy'])->name('buku.destroy');
 //update
 Route::put('books/{id_buku}', [AdminController::class, 'update'])->name('books.update');
-
-//show-development-only
+//show-books for development-only
 Route::get('/books/{id_buku}', [AdminController::class, 'show'])->name('buku.show');

@@ -4,7 +4,7 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "prettier" : "prettier"
+        "prettier": "prettier"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.19",
@@ -16,6 +16,9 @@
         "vite": "^5.0"
     },
     "dependencies": {
-        "flowbite": "^2.3.0"
+        "alpine": "^0.2.1",
+        "css": "^3.0.0",
+        "flowbite": "^2.3.0",
+        "tailwind": "^4.0.0"
     }
 }
