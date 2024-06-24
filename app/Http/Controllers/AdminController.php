@@ -10,14 +10,14 @@ use Illuminate\Http\RedirectResponse;
 class AdminController extends Controller
 {
     public function index(){
-        $books = books::orderBy('judul')->get();
+        $books = books::orderBy('judul')->paginate(10);
         $publisher = publisher::all();
         return view('admin', compact('books','publisher'));
     }
     public function indexpengadaan(){
         $books = books::with('publisher')
             ->orderBy('stok', 'asc')
-            ->get();
+            ->paginate(10);
         return view('pengadaan', compact('books'));
     }
 
@@ -66,6 +66,7 @@ class AdminController extends Controller
         return response()->json(($books));
     }
 
+    
     public function update(Request $request, $id_buku){
         // dd($request->all());
         $books=books::findOrFail($id_buku);

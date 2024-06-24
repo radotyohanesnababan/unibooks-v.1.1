@@ -449,6 +449,9 @@
                     </tbody>
                 </table>
             </div>
+            <div class="d-flex justify-content-center m-2 ">
+                {{ $books->links() }}
+            </div>
         </div>
         @if (session('success'))
             <div

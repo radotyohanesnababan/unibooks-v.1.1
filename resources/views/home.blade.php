@@ -195,6 +195,9 @@
                     </tbody>
                 </table>
             </div>
+            <div class="d-flex justify-content-center m-2 ">
+                {{ $books->links() }}
+            </div>
         </div>
         <footer class="bg-white rounded-lg m-2 light:bg-gray-800" style="bottom:0 ; width:fit-content">
             <div class="w-full max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
