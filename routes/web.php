@@ -7,7 +7,7 @@ use App\Http\Controllers\booksController;
 
 
 //navigasi
-Route::get('/', [AdminController::class, 'index']);
+Route::get('/', [AdminController::class, 'indexhome']);
 Route::get('/pengadaan', [AdminController::class, 'indexpengadaan']);
 Route::get('/admin', [AdminController::class, 'index'])->name('get_books');
 

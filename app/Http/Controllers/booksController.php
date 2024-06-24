@@ -22,9 +22,10 @@ class booksController extends Controller
         return view('admin', compact('books'));
     }
     public function search (Request $request){
+        $query = $request->input('search');
         $searchTerm = $request->input('search');
-        $books = books::where('judul', 'like', "%{$searchTerm}%")->get();
-        return view('home', compact('books'));
+        $books = books::where('judul', 'like', "%{$searchTerm}%")->paginate(10);
+        return view('home', compact('books'))->with('query', $query);
     }
 
     public function store(Request $request)
