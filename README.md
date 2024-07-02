@@ -17,10 +17,11 @@
 
 ## Tambahan
 1. Paginate Support
+2. Login & Register Support
 
 ## Cara Instalasi
 1. Download Branch master, bisa menggunakan Git Bash atau Download ZIP
-2. Jalankan di terminal VSCode ```npm install``` dan ```composer install```
+2. Jalankan di terminal VSCode ```npm install```, ```composer install```, dan ```composer update```
 4. Jika memakai laragon, masukkan folder proyek ke folder C:/laragon/www/
 
 
