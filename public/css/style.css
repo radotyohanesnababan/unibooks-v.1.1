@@ -1,16 +1,11 @@
-body{
-    border: 1px solid black;
-}
 
-
-#modal {
+.hidds{
     opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+    transition:all 0.5s ease-in-out;
 }
 
-#modal.show {
+
+
+.show{
     opacity: 1;
-    visibility: visible;
-    transition-delay: 0s;
 }

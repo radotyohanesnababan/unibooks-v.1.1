@@ -34,5 +34,12 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+    'firebase' => [
+        'credentials' => [
+            'file' => storage_path('firebase_credentials.json'),
+            'auto_discovery' => true,
+        ],
+        'database_url' => 'https://unibooks-e28ba-default-rtdb.asia-southeast1.firebasedatabase.app/',
+    ],
 
 ];

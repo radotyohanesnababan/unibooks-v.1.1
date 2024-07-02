@@ -9,17 +9,10 @@ use Illuminate\Support\Facades\DB;
 
 class booksController extends Controller
 {
-
-    public function index(){
-        $books = books::orderBy('judul')->get();
-        return view('home', compact('books'));
-    }
-    
-    public function indexadmin(){
-        $books = books::all()
-            ->orderBy('judul', 'asc')
-            ->get();
-        return view('admin', compact('books'));
+    public function indexhome(){
+        $books = books::orderBy('judul')->paginate(10);
+        $publisher = publisher::all();
+        return view('home', compact('books','publisher'));
     }
     public function search (Request $request){
         $query = $request->input('search');

@@ -11,6 +11,20 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <link rel="stylesheet" href="<?php echo asset('css/style.css')?>" type="text/css"> 
+    <style>
+        .modal {
+            transition: opacity 0.5s ease;
+        }
+        .modal-hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .modal-visible {
+            opacity: 1;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -83,7 +97,7 @@
             </a>
             <ul class="space-y-2 font-medium">
                 <li>
-                    <a href="/"
+                    <a href="/home"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
@@ -190,8 +204,20 @@
                                 <td
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
 
+                                    <div>
+                                        <button id="openModalEditBtn" class="text-blue-600 hover:text-blue-800"
+                                        onclick="editBook(this)">
+                                        <svg class="w-6 h-6 text-blue-600 hover:text-blue-800" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="2"
+                                                d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z" />
+                                        </svg>
+                                    </button>
+                                    </div>
                                     <div id="modalEdit"
-                                        class="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50 z-50 hidden">
+                                        class="hidds fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50 z-50 hidden">
                                         <div class="relative p-5 border w-full max-w-lg shadow-lg rounded-md bg-white">
                                             <div class="mt-3 text-center">
                                                 <h3 class="text-lg leading-6 font-medium text-gray-900">Edit Buku</h3>
@@ -278,19 +304,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button id="openModalEditBtn" class="text-blue-600 hover:text-blue-800"
-                                        onclick="editBook(this)">
-                                        <svg class="w-6 h-6 text-blue-600 hover:text-blue-800" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            fill="none" viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round"
-                                                stroke-linejoin="round" stroke-width="2"
-                                                d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z" />
-                                        </svg>
-                                    </button>
-
+                                    
+                                    
                                     <div id="modal"
-                                        class="fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50 z-50 hidden">
+                                        class=" hidds fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50 z-50 hidden">
                                         <div class="relative p-5 border w-full max-w-lg shadow-lg rounded-md bg-white">
                                             <div class="mt-3 text-center">
                                                 <h3 class="text-lg leading-6 font-medium text-gray-900">Tambah
@@ -407,8 +424,8 @@
                                                     </svg>
                                                     <span class="sr-only">Close modal</span>
                                                 </button>
-                                                <div class="p-4 md:p-5 text-center">
-                                                    <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200"
+                                                <div class=" hidds p-4 md:p-5 text-center">
+                                                    <svg class="mx-auto mb-4 text-gray-100 w-12 h-12 dark:text-gray-200"
                                                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                                         fill="none" viewBox="0 0 20 20">
                                                         <path stroke="currentColor" stroke-linecap="round"
@@ -466,7 +483,9 @@
             </div>
         </footer>
     </div>
+    
     <script src="{{ asset('js/modal.js') }}"></script>
+    <script src="{{ asset('js/animation.js') }}"></script>
 </body>
 
 </html>

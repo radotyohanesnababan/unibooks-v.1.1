@@ -14,11 +14,7 @@ class AdminController extends Controller
         $publisher = publisher::all();
         return view('admin', compact('books','publisher'));
     }
-    public function indexhome(){
-        $books = books::orderBy('judul')->paginate(10);
-        $publisher = publisher::all();
-        return view('home', compact('books','publisher'));
-    }
+    
     public function indexpengadaan(){
         $books = books::with('publisher')
             ->orderBy('stok', 'asc')

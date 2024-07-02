@@ -8,9 +8,10 @@
     <title>Home</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
     <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="<?php echo asset('css/style.css')?>" type="text/css"> 
 </head>
 
 <body>
@@ -36,9 +37,17 @@
                             class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Unibooks</span>
                     </a>
                 </div>
-                <div class="flex items-center">
+                <di3v class="flex items-center">
                     <div class="flex items-center ">
-                        <h1 class="text-white font-bold">Sistem Informasi Pengadaan Buku</h1>
+                        <h1 class="text-white font-bold">
+                            Selamat Datang <b>{{ Auth::user()->name }}</b>, Anda Login sebagai <b>{{ Auth::user()->role }}</b>
+                        </h1>
+                    </div>
+                    <div class="ml-7">
+                        <button type="submit" method="POST" class="inline-flex items-center px-5 py-1.5 text-sm font-medium text-center text-white bg-red-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-red-900">
+                            <a class="" href="{{ route('actionlogout') }}">Logout</a>
+                        </button>
+                     
                     </div>
                 </div>
             </div>
@@ -64,9 +73,8 @@
             </a>
             <ul class="space-y-2 font-medium">
                 <li>
-                    <a href="/"
+                    <a href="/home"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-gray bg-gray-50 hover:bg-gray-200 dark:hover:bg-gray-200 group">
-                        {{-- <a href="/" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-gray bg-gray-50 hover:bg-gray-200 dark:hover:bg-gray-200 group"> --}}
                         <svg class="w-6 h-6 text-gray-800 dark:text-gray" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                             viewBox="0 0 24 24">
@@ -79,7 +87,6 @@
                 <li>
                     <a href="/admin"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        {{--  <a href="/admin" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"> --}}
                         <svg class="w-[24px] h-[24px] text-gray-800 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                             viewBox="0 0 24 24">
@@ -96,7 +103,6 @@
                 <li>
                     <a href="/pengadaan"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        {{--  <a href="/pengadaan" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"> --}}
                         <svg class="w-[24px] h-[24px] text-gray-800 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                             viewBox="0 0 24 24">
@@ -110,8 +116,7 @@
         </div>
     </aside>
 
-    <div class="mt-12 p-4 sm:ml-64">
-        
+    <div x-data="{ show: true }" class="mt-12 p-4 sm:ml-64">
         <form action="{{ route('books.search') }}" method="GET" class="max-w-md mx-auto">
             <label for="default-search"
                 class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
@@ -130,7 +135,7 @@
                     class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
             </div>
         </form>
-        <div class="p-4 mt-3">
+        <div class="p-4 mt-3 hidds">
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
@@ -200,14 +205,14 @@
         </div>
         <footer class="bg-white rounded-lg m-2 light:bg-gray-800" style="bottom:0 ; width:fit-content">
             <div class="w-full max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-                <span class="text-sm font-bold text-gray-900 sm:text-center dark:text-gray-900">© 2024 <a
-                        href="https://google.com/" class="hover:underline">Unibooks™</a>. All Rights Reserved.
+                <span class="text-sm font-bold text-gray-900 sm:text-center dark:text-gray-900">© 2024 
+                    <a href="https://google.com/" class="hover:underline">Unibooks™</a>. All Rights Reserved.
                 </span>
             </div>
         </footer>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-
+    <script src="{{ asset('js/animation.js') }}"></script>
 </body>
 
 </html>

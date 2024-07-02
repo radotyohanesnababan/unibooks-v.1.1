@@ -8,6 +8,7 @@
     <title>Pengadaan</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="<?php echo asset('css/style.css')?>" type="text/css"> 
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
@@ -61,7 +62,7 @@
             </a>
             <ul class="space-y-2 font-medium">
                 <li>
-                    <a href="/"
+                    <a href="/home"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
@@ -104,7 +105,7 @@
         </div>
     </aside>
 
-    <div class="mt-12 p-4 sm:ml-64">
+    <div class="mt-12 p-4 sm:ml-64 hidds">
         <h2 class=" text-center text-4xl font-bold dark:text-black">Daftar Stok Buku </h2>
         <div class="p-4 mt-3">
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -159,7 +160,7 @@
                 </div>
             </footer>
         </div>
-
+        <script src="{{ asset('js/animation.js') }}"></script>
 </body>
 
 </html>
