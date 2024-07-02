@@ -8,24 +8,18 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 
 //navigasi
-Route::get('/home', [booksController::class, 'indexhome']);
-Route::get('/pengadaan', [AdminController::class, 'indexpengadaan']);
-Route::get('/admin', [AdminController::class, 'index'])->name('get_books');
-Route::get('/register', function () {
-    return view('register');
-});
+Route::get('/pengadaan', [AdminController::class, 'indexpengadaan'])->middleware('auth');
+Route::get('/admin', [AdminController::class, 'index'])->name('get_books')->middleware('auth');
+Route::get('/home',[BooksController::class, 'indexhome'])->name('home')->middleware('auth');
 
-//login-middleware
+//login-logout
 Route::get('/', [LoginController::class, 'login'])->name('login');
 Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
-Route::get('/home',[BooksController::class, 'indexhome'])->name('home')->middleware('auth');
 Route::get('actionlogout',[LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
 
 //register
-
 Route::get('/register', [RegisterController::class, 'register'])->name('register');
 Route::post('/register', [RegisterController::class, 'actionregister'])->name('actionregister');
-
 
 
 //aksi
