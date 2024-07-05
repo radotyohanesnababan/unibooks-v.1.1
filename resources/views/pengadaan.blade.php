@@ -133,7 +133,7 @@
     </aside>
 
     <div class="mt-12 p-4 sm:ml-64 hidds">
-        <form action="{{ route('books.search') }}" method="GET" >
+        <form action="{{ route('books.search') }}" method="GET" class="max-w-lg mx-auto"  >
             <label for="default-search"
                 class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
             <div class="relative">

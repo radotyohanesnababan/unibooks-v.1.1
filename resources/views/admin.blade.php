@@ -11,15 +11,17 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-    <link rel="stylesheet" href="<?php echo asset('css/style.css')?>" type="text/css"> 
+    <link rel="stylesheet" href="<?php echo asset('css/style.css'); ?>" type="text/css">
     <style>
         .modal {
             transition: opacity 0.5s ease;
         }
+
         .modal-hidden {
             opacity: 0;
             pointer-events: none;
         }
+
         .modal-visible {
             opacity: 1;
         }
@@ -50,11 +52,15 @@
                     </a>
                 </div>
                 <div class="flex items-center">
-                    <div class="ml-7">
-                        <button type="submit" method="POST" class="inline-flex items-center px-5 py-1.5 text-sm font-medium text-center text-white bg-red-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-red-900">
-                            <a class="" href="{{ route('actionlogout') }}">Logout</a>
-                        </button>
-                    </div>
+                    <a href="{{ route('actionlogout') }}">
+                        <div class="ml-7">
+                            <button type="submit" method="POST"
+                                class="inline-flex items-center px-5 py-1.5 text-sm font-medium text-center text-white bg-red-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-red-900">
+                                Logout
+                            </button>
+                        </div>
+                    </a>
+                    
                     <div class="flex items-center">
                         <div class="flex items-center ms-3">
                             <div>
@@ -73,7 +79,8 @@
                                     <p class="text-sm text-gray-900 dark:text-white" role="none">
                                         {{ Auth::user()->name }}
                                     </p>
-                                    <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
+                                    <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300"
+                                        role="none">
                                         {{ Auth::user()->role }}
                                     </p>
                                 </div>
@@ -148,17 +155,17 @@
         </div>
     </aside>
     <div class="mt-12 p-4 sm:ml-64">
-        <div class="relative overflow-x-auto sm:rounded-lg justify-center" >
+        <div class="relative overflow-x-auto sm:rounded-lg justify-center">
             <div class="">
-                <form action="{{ route('books.search') }}" method="GET" >
+                <form action="{{ route('books.search') }}" method="GET" class="max-w-lg mx-auto">
                     <label for="default-search"
                         class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                     <div class="relative">
                         <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                             <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                             </svg>
                         </div>
                         <input type="text" name= "search" id="default-search"
@@ -171,11 +178,11 @@
             </div>
             <div class="flex justify-end">
                 <button id="openModalBtn" type="button"
-                    class="ml-6 mt-6 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                    class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                     Tambah Buku
                 </button>
             </div>
-        </div>        
+        </div>
         <div class="p-4 mt-3 rounded-lg dark:border-gray-700">
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -335,15 +342,15 @@
                                                                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Simpan</button>
                                                             </div>
                                                             <button type="button" id="closeModalEditBtn"
-                                                                    class="text-gray-500 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-md text-sm font-medium py-2 px-4">Batal</button>
+                                                                class="text-gray-500 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-md text-sm font-medium py-2 px-4">Batal</button>
                                                         </div>
                                                     </form>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    
+
+
                                     <div id="modal"
                                         class=" hidds fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50 z-50 hidden">
                                         <div class="relative p-5 border w-full max-w-lg shadow-lg rounded-md bg-white">
@@ -424,9 +431,9 @@
                                                                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Simpan</button>
                                                             </div>
                                                             <button type="button" id="closeModalBtn"
-                                                                    class="text-gray-500 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-md text-sm font-medium py-2 px-4">Batal</button>
+                                                                class="text-gray-500 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-md text-sm font-medium py-2 px-4">Batal</button>
                                                         </div>
-                                                        
+
                                                     </form>
                                                 </div>
                                             </div>
@@ -508,7 +515,7 @@
             </div>
         </footer>
     </div>
-    
+
     <script src="{{ asset('js/modal.js') }}"></script>
     <script src="{{ asset('js/animation.js') }}"></script>
 </body>
