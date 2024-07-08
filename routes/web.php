@@ -10,10 +10,10 @@ use App\Http\Controllers\RegisterController;
 //navigasi
 Route::get('/pengadaan', [AdminController::class, 'indexpengadaan'])->middleware('auth');
 Route::get('/admin', [AdminController::class, 'index'])->name('get_books')->middleware('auth');
-Route::get('/home',[BooksController::class, 'indexhome'])->name('home')->middleware('auth');
+Route::get('/',[BooksController::class, 'indexhome'])->name('home');
 
 //login-logout
-Route::get('/', [LoginController::class, 'login'])->name('login');
+Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
 Route::get('actionlogout',[LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
 
@@ -36,3 +36,5 @@ Route::delete('/books/{id_buku}', [AdminController::class, 'destroy'])->name('bu
 Route::put('books/{id_buku}', [AdminController::class, 'update'])->name('books.update');
 //show-books for development-only
 Route::get('/books/{id_buku}', [AdminController::class, 'show'])->name('buku.show');
+//printCSV
+Route::get('/exportcsv', [AdminController::class, 'exportCSV'])->name('exportcsv');

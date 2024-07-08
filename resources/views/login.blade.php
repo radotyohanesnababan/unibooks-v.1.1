@@ -12,6 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </head>
 <body>
+  
     <!-- component -->
 <div class="bg-gray-100 flex justify-center items-center h-screen">
     <!-- Left: Image -->
@@ -23,8 +24,14 @@
 </div>
 <!-- Right: Login Form -->
 <div class="lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
+  <div class="text-center mb-3">
+    @if (session('success'))
+        <div class="bg-green-100 border font-semibold border-green-400 text-green-700 px-4 py-2 rounded relative text-center">
+          {{ session('success') }}
+        </div>  
+  @endif
+  </div>
   <h1 class="text-2xl font-semibold mb-4">Login</h1>
-
   @if (session('error'))
     <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2"><b>Opps!</b>{{ session('error') }}</div>
   @endif

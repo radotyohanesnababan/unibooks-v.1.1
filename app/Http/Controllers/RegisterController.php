@@ -19,11 +19,9 @@ class RegisterController extends Controller
             $user = User::create([
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
-                //'password' => bcrypt($request->input('password')),
                 'password' => $request->input('password'),
             ]);
-            Session()->flash('success', 'Registrasi Berhasil');
-            return redirect('/register');
+            return redirect('/login')->with('success', 'Registrasi Berhasil');
         }
         catch(QueryException $e){
             if ($e->getCode() == '23000') {

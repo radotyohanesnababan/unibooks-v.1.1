@@ -15,7 +15,7 @@ class LoginController extends Controller
         $books = books::orderBy('judul')->paginate(10);
         $publisher = publisher::all();
         if (Auth::check()) {
-            return redirect('/home');
+            return redirect('/');
         }else{
             return view('login',compact('books','publisher'));
         }
@@ -27,7 +27,7 @@ class LoginController extends Controller
             'password' => $request->input('password'),
         ];
         if (Auth::Attempt($data)) {
-            return redirect('/home');
+            return redirect('/admin');
         }else{  
             Session()->flash('error', 'Email atau Password salah');
             return redirect('/');
@@ -36,6 +36,6 @@ class LoginController extends Controller
 
     public function actionlogout(){
         Auth::logout();
-        return redirect('/');
+        return redirect('/login');
     }
 }

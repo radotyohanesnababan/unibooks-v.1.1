@@ -1,6 +1,6 @@
-1. Page diawal home aja, lalu ada tombol login (login dipindah)
+1. Page diawal home aja, lalu ada tombol login (login dipindah) -- DONE
 2. Dibawah home ada  sidebar penerbit, sort by penerbit
-3. Register langsung direct ke login
-4. Print dan download data (csv) dan pdf (single data)
-5. Deskripsi Buku diganti di aksi ( Tombol Edit dan Delete tidak dimunculkan)
-6. Role dibuat
+3. Register langsung direct ke login -- DONE
+4. Print dan download data-1page (csv) -- DONE dan pdf (single data), all (csv)
+5. Deskripsi Buku diganti di aksi ( Tombol Edit dan Delete tidak dimunculkan) 
+6. Role dibuat -- HOLD 

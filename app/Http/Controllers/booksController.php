@@ -21,5 +21,7 @@ class booksController extends Controller
         return view('home', compact('books'))->with('query', $query);
     }
 
+    
+
 
 }

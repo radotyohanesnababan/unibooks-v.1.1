@@ -98,6 +98,11 @@ class AdminController extends Controller
         return redirect()->route('get_books')->with(['success'=>'Buku Berhasil Diperbaharui']);
     }
 
+    public function exportCSV(){
+        $books = books::all();
+        return response()->json($books);
+    }
+
     
 
 

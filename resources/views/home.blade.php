@@ -40,34 +40,10 @@
                 <div class="flex items-center">
                     <div class="ml-7">
                         <button type="submit" method="POST" class="inline-flex items-center px-5 py-1.5 text-sm font-medium text-center text-white bg-red-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-red-900">
-                            <a class="" href="{{ route('actionlogout') }}">Logout</a>
+                            <a class="" href="{{ route('login') }}">Login</a>
                         </button>
                     </div>
-                    <div class="flex items-center">
-                        <div class="flex items-center ms-3">
-                            <div>
-                                <button type="button"
-                                    class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-                                    aria-expanded="false" data-dropdown-toggle="dropdown-user">
-                                    <span class="sr-only">Open user menu</span>
-                                    <img class="w-8 h-8 rounded-full"
-                                        src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                                        alt="user photo">
-                                </button>
-                            </div>
-                            <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
-                                id="dropdown-user">
-                                <div class="px-4 py-3" role="none">
-                                    <p class="text-sm text-gray-900 dark:text-white" role="none">
-                                        {{ Auth::user()->name }}
-                                    </p>
-                                    <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-                                        {{ Auth::user()->role }}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+              
                 </div>
             </div>
         </div>
@@ -171,15 +147,15 @@
                             <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">
                                 Genre
                             </th>
-                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">
+                            {{-- <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">
                                 Deskripsi
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">
+                            </th> --}}
+                            {{-- <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">
                                 Stok
-                            </th>
-                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">
+                            </th> --}}
+                            {{-- <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">
                                 ISBN
-                            </th>
+                            </th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -197,15 +173,18 @@
                                 <td
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
                                     {{ $item->genre }}</td>
-                                <td
+                                {{-- <td
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
-                                    {{ $item->deskripsi }}</td>
-                                <td
+                                    {{ $item->deskripsi }}</td> --}}
+                                {{-- <td
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
-                                    {{ $item->stok }}</td>
-                                <td
+                                    {{ $item->stok }}</td> --}}
+                                {{-- <td
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
-                                    {{ $item->isbn }}</td>
+                                    {{ $item->isbn }}</td> --}}
+                                {{-- <td
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
+                                    {{ $item->isbn }}</td> --}}
                             </tr>
                         @empty
                             <tr>

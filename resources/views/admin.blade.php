@@ -60,7 +60,7 @@
                             </button>
                         </div>
                     </a>
-                    
+
                     <div class="flex items-center">
                         <div class="flex items-center ms-3">
                             <div>
@@ -111,7 +111,7 @@
             </a>
             <ul class="space-y-2 font-medium">
                 <li>
-                    <a href="/home"
+                    <a href="/"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
@@ -176,16 +176,25 @@
                     </div>
                 </form>
             </div>
-            <div class="flex justify-end">
-                <button id="openModalBtn" type="button"
-                    class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                    Tambah Buku
-                </button>
+            <div class="flex justify-end mt-2 justify-between">
+                <div class="ml-4">
+                    <button id="downloadCSV" type="button"
+                        class=" text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-8 py-1.5 me-1 mb-1 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">
+                        Print as CSV
+                    </button>
+                </div>
+                <div>
+                    <button id="openModalBtn" type="button"
+                        class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                        Tambah Buku
+                    </button>
+                </div>
+                
             </div>
         </div>
         <div class="p-4 mt-3 rounded-lg dark:border-gray-700">
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <table id = "bookstable" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">Judul</th>
@@ -518,6 +527,7 @@
 
     <script src="{{ asset('js/modal.js') }}"></script>
     <script src="{{ asset('js/animation.js') }}"></script>
+    <script src="{{ asset('js/downloadCSV.js') }}"></script>
 </body>
 
 </html>

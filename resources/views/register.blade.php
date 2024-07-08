@@ -134,7 +134,7 @@
           </div>
         </form>
         <div class="mt-4 text-sm text-gray-600 text-center">
-          <p>Sudah Punya Akun? <a href="/" class="text-black hover:underline">Login</a>
+          <p>Sudah Punya Akun? <a href="/login" class="text-black hover:underline">Login</a>
           </p>
         </div>
       </div>
