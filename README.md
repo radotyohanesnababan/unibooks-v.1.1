@@ -7,6 +7,7 @@
 3. Fungsi View Buku
 4. Fungsi Update Buku
 5. Fungsi Search Buku
+6. Fungsi View Desc Buku
 
 ## Technology
 - PHP
@@ -18,6 +19,7 @@
 ## Tambahan
 1. Paginate Support
 2. Login & Register Support
+3. Print Buku (.CSV)
 
 ## Cara Instalasi
 1. Download Branch master, bisa menggunakan Git Bash atau Download ZIP
