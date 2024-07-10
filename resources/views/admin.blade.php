@@ -157,7 +157,7 @@
     <div class="mt-12 p-4 sm:ml-64">
         <div class="relative overflow-x-auto sm:rounded-lg justify-center">
             <div class="">
-                <form action="{{ route('books.search') }}" method="GET" class="max-w-lg mx-auto">
+                <form action="{{ route('admin.search') }}" method="GET" class="max-w-lg mx-auto">
                     <label for="default-search"
                         class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                     <div class="relative">
@@ -171,6 +171,7 @@
                         <input type="text" name= "search" id="default-search"
                             class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Search Books..." value="{{ $query ?? '' }}" required />
+                            <input type="hidden" name ="page" value="admin">
                         <button type="submit"
                             class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                     </div>
@@ -246,7 +247,6 @@
                                     {{ $item->isbn }}</td>
                                 <td
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
-
                                     <div>
                                         <button id="openModalEditBtn" class="text-blue-600 hover:text-blue-800"
                                             onclick="editBook(this)">
@@ -268,6 +268,14 @@
                                                     stroke-linejoin="round" stroke-width="2"
                                                     d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z" />
                                             </svg>
+                                        </button>
+                                        <button data-modal-target="popup-modal"
+                                            data-modal-toggle="popup-modal"
+                                            class="text-green-600 hover:text-green-800">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                              </svg>
+                                              
                                         </button>
                                     </div>
                                     <div id="modalEdit"

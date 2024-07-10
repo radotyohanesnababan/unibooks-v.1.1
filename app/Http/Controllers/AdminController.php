@@ -62,10 +62,7 @@ class AdminController extends Controller
         return redirect()->route('get_books')->with(['success'=>'Buku berhasil dihapus!']);
     }
 
-    public function show($id_buku){
-        $books = books::findOrFail($id_buku);
-        return response()->json(($books));
-    }
+    
 
     
     public function update(Request $request, $id_buku){

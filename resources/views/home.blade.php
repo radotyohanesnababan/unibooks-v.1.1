@@ -11,7 +11,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
     <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="<?php echo asset('css/style.css')?>" type="text/css"> 
+    <link rel="stylesheet" href="<?php echo asset('css/style.css'); ?>" type="text/css">
 </head>
 
 <body>
@@ -39,11 +39,16 @@
                 </div>
                 <div class="flex items-center">
                     <div class="ml-7">
-                        <button type="submit" method="POST" class="inline-flex items-center px-5 py-1.5 text-sm font-medium text-center text-white bg-red-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-red-900">
-                            <a class="" href="{{ route('login') }}">Login</a>
+                        <button type="submit" method="POST"
+                            class="inline-flex items-center px-5 py-1.5 text-sm font-medium text-center text-white bg-red-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-red-900">
+                            @guest
+                                <a class="" href="{{ route('login') }}">Login</a>
+                            @else
+                                <a class="" href="{{ route('actionlogout') }}">Logout</a>
+                            @endguest
                         </button>
                     </div>
-              
+
                 </div>
             </div>
         </div>
@@ -101,7 +106,8 @@
                         <svg class="w-[24px] h-[24px] text-gray-800 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                             viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2"
                                 d="M5 19V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v13H7a2 2 0 0 0-2 2Zm0 0a2 2 0 0 0 2 2h12M9 3v14m7 0v4" />
                         </svg>
                         <span class="flex-1 ms-3 whitespace-nowrap">Pengadaan</span>
@@ -112,7 +118,7 @@
     </aside>
 
     <div x-data="{ show: true }" class="mt-12 p-4 sm:ml-64">
-        <form action="{{ route('books.search') }}" method="GET" class="max-w-lg mx-auto" >
+        <form action="{{ route('home.search') }}" method="GET" class="max-w-lg mx-auto">
             <label for="default-search"
                 class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
             <div class="relative">
@@ -126,6 +132,7 @@
                 <input type="text" name= "search" id="default-search"
                     class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Search Books..." value="{{ $query ?? '' }}" required />
+                <input type="hidden" name ="page" value="home">
                 <button type="submit"
                     class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
             </div>
@@ -147,9 +154,9 @@
                             <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">
                                 Genre
                             </th>
-                            {{-- <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">
-                                Deskripsi
-                            </th> --}}
+                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">
+                                
+                            </th>
                             {{-- <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">
                                 Stok
                             </th> --}}
@@ -173,18 +180,101 @@
                                 <td
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
                                     {{ $item->genre }}</td>
-                                {{-- <td
+                                <td
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
-                                    {{ $item->deskripsi }}</td> --}}
-                                {{-- <td
-                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
-                                    {{ $item->stok }}</td> --}}
-                                {{-- <td
-                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
-                                    {{ $item->isbn }}</td> --}}
-                                {{-- <td
-                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
-                                    {{ $item->isbn }}</td> --}}
+                                    <div>
+                                        <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-2.5 py-1.5  dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"><a href="{{ route('buku.show', $item->id_buku) }}">Selengkapnya</a></button>
+                                    </div>
+                                    <div id="modalEdit"
+                                    class="hidds fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50 z-50 hidden">
+                                    <div class="relative p-5 border w-full max-w-lg shadow-lg rounded-md bg-white">
+                                        <div class="mt-3 text-center">
+                                            <h3 class="text-lg leading-6 font-medium text-gray-900">Edit Buku</h3>
+                                            <div class="mt-4">
+                                                <form method="POST"
+                                                    action="{{ route('books.update', $item->id_buku) }}"
+                                                    id="editBookForm" class="grid grid-cols-1 gap-6 ">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <div class="flex items-center">
+                                                        <label for="judul"
+                                                            class="w-1/4 text-gray-700 text-sm font-bold">Judul:</label>
+                                                        <input type="text" id="judul" name="judul"
+                                                            class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                            required>
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        <label for="penulis"
+                                                            class="w-1/4 text-gray-700 text-sm font-bold">Penulis:</label>
+                                                        <input type="text" id="penulis" name="penulis"
+                                                            class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                            required>
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        <label for="penerbit"
+                                                            class="w-1/4 text-gray-700 text-sm font-bold">Penerbit:</label>
+                                                        <select id="penerbit" name="nama_penerbit"
+                                                            class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                            required>
+                                                            <option value="">Select Penerbit</option>
+                                                            @foreach ($publisher as $items)
+                                                                <option value="{{ $items->nama_penerbit }}">
+                                                                    {{ $items->nama_penerbit }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        <label for="tahun_terbit"
+                                                            class="w-1/4 text-gray-700 text-sm font-bold">Tahun
+                                                            Terbit:</label>
+                                                        <input type="number" id="tahun_terbit"
+                                                            name="tahun_terbit"
+                                                            class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                            required>
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        <label for="genre"
+                                                            class="w-1/4 text-gray-700 text-sm font-bold">Genre:</label>
+                                                        <input type="text" id="genre" name="genre"
+                                                            class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                            required>
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        <label for="deskripsi"
+                                                            class="w-1/4 text-gray-700 text-sm font-bold">Deskripsi:</label>
+                                                        <textarea id="deskripsi" name="deskripsi"
+                                                            class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                            required></textarea>
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        <label for="stok"
+                                                            class="w-1/4 text-gray-700 text-sm font-bold">Stok:</label>
+                                                        <input type="number" id="stok" name="stok"
+                                                            class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                            required>
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        <label for="isbn"
+                                                            class="w-1/4 text-gray-700 text-sm font-bold">ISBN:</label>
+                                                        <input type="text" id="isbn" name="isbn"
+                                                            class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                                            required>
+                                                    </div>
+                                                    <div class="flex justify-between items-center mt-4">
+                                                        <div class=" flex items-center justify-between ">
+                                                            <button type="submit"
+                                                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Simpan</button>
+                                                        </div>
+                                                        <button type="button" id="closeModalEditBtn"
+                                                            class="text-gray-500 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-md text-sm font-medium py-2 px-4">Batal</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                    
+                                </td>
                             </tr>
                         @empty
                             <tr>
@@ -203,7 +293,7 @@
         </div>
         <footer class="bg-white rounded-lg m-2 light:bg-gray-800" style="bottom:0 ; width:fit-content">
             <div class="w-full max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-                <span class="text-sm font-bold text-gray-900 sm:text-center dark:text-gray-900">© 2024 
+                <span class="text-sm font-bold text-gray-900 sm:text-center dark:text-gray-900">© 2024
                     <a href="https://google.com/" class="hover:underline">Unibooks™</a>. All Rights Reserved.
                 </span>
             </div>

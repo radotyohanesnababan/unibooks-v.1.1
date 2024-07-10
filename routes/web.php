@@ -24,8 +24,13 @@ Route::post('/register', [RegisterController::class, 'actionregister'])->name('a
 
 //aksi
 
-//search
-Route::get('/books',[booksController::class, 'search'])->name('books.search');
+//search-books-page
+Route::get('/books',[booksController::class, 'search'])->name('home.search');
+//search-admin-page
+Route::get('/admin/books',[booksController::class, 'search'])->name('admin.search');
+//search-pengadaan-page
+Route::get('/pengadaan/books',[booksController::class, 'search'])->name('pengadaan.search');
+
 //add-books
 Route::post('/admin', [AdminController::class, 'store'])->name('store_books');
 //add-publisher
@@ -34,7 +39,7 @@ Route::post('/publisher',[publisherController::class, 'store']);
 Route::delete('/books/{id_buku}', [AdminController::class, 'destroy'])->name('buku.destroy');
 //update
 Route::put('books/{id_buku}', [AdminController::class, 'update'])->name('books.update');
-//show-books for development-only
-Route::get('/books/{id_buku}', [AdminController::class, 'show'])->name('buku.show');
+//show-books-detail
+Route::get('/books/{id_buku}', [booksController::class, 'show'])->name('buku.show');
 //printCSV
 Route::get('/exportcsv', [AdminController::class, 'exportCSV'])->name('exportcsv');
