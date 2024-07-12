@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Detail Buku </title>
+    <title>Detail Buku {{ $books->judul }} </title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
@@ -71,7 +71,7 @@
                     </tr>
                     <tr class="bg-gray-50">
                         <td class="py-2 px-4 border-b border-gray-200 font-semibold">Penerbit</td>
-                        <td class="py-2 px-4 border-b border-gray-200">{{ $books->penerbit }}</td>
+                        <td class="py-2 px-4 border-b border-gray-200">{{ $books->publisher->nama_penerbit }}</td>
                     </tr>
                     <tr>
                         <td class="py-2 px-4 border-b border-gray-200 font-semibold">ISBN</td>

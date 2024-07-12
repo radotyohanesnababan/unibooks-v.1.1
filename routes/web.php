@@ -22,6 +22,8 @@ Route::get('/register', [RegisterController::class, 'register'])->name('register
 Route::post('/register', [RegisterController::class, 'actionregister'])->name('actionregister');
 
 
+
+
 //aksi
 
 //search-books-page
@@ -43,3 +45,6 @@ Route::put('books/{id_buku}', [AdminController::class, 'update'])->name('books.u
 Route::get('/books/{id_buku}', [booksController::class, 'show'])->name('buku.show');
 //printCSV
 Route::get('/exportcsv', [AdminController::class, 'exportCSV'])->name('exportcsv');
+
+//viewbookaspenerbit
+Route::get('/bookaspenerbit/{id_penerbit}', [booksController::class, 'bookaspenerbit'])->name('viewaspenerbit');

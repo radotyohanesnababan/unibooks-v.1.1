@@ -14,6 +14,18 @@ class booksController extends Controller
         $publisher = publisher::all();
         return view('home', compact('books','publisher'));
     }
+
+    public function bookaspenerbit($id_penerbit){
+        $publisher = publisher::all();
+        $books = books::where('id_penerbit', $id_penerbit)->paginate(10);
+        return view('bookaspenerbit', compact('books','publisher'));
+    }
+    public function show($id_buku){
+        $books = books::with('publisher')->findOrFail($id_buku);
+        // return response()->json(($books));
+        return view('description', compact('books'));
+    }
+
     public function search (Request $request){
         $query = $request->input('search');
         $searchTerm = $request->input('search');
@@ -31,11 +43,7 @@ class booksController extends Controller
                     return view('home', compact('books','publisher'))->with('query', $query);
             }
     }
-    public function show($id_buku){
-        $books = books::findOrFail($id_buku);
-        // return response()->json(($books));
-        return view('description', compact('books'));
-    }
+
 
     
 

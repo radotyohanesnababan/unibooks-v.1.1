@@ -16,10 +16,11 @@ class AdminController extends Controller
     }
     
     public function indexpengadaan(){
+        $publisher = publisher::all();
         $books = books::with('publisher')
             ->orderBy('stok', 'asc')
             ->paginate(10);
-        return view('pengadaan', compact('books'));
+        return view('pengadaan', compact('books','publisher'));
     }
 
     //addbooks
