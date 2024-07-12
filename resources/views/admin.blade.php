@@ -183,6 +183,15 @@
             </ul>
         </div>
     </aside>
+
+    <script>
+    // JavaScript untuk toggle dropdown
+    document.getElementById('dropdownUsersButton').addEventListener('click', function() {
+        const dropdown = document.getElementById('dropdownUsers');
+        dropdown.classList.toggle('hidden');
+    });
+</script>
+    
     <div class="mt-12 p-4 sm:ml-64">
         <div class="relative overflow-x-auto sm:rounded-lg justify-center">
             <div class="">
