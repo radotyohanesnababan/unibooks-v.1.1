@@ -22,8 +22,8 @@ class booksController extends Controller
     }
     public function show($id_buku){
         $books = books::with('publisher')->findOrFail($id_buku);
-        // return response()->json(($books));
-        return view('description', compact('books'));
+        $booksrandom = books::inRandomOrder()-> take(5)->get();
+        return view('description', compact('books','booksrandom'));
     }
 
     public function search (Request $request){

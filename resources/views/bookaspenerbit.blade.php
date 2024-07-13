@@ -130,6 +130,7 @@
                         dropdown.classList.toggle('hidden');
                     });
                 </script>
+                @auth
                 <a href="/admin">
                     <button id="dropdownUsersButton" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white bg-gray-50 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 group w-full text-left" type="button">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -139,6 +140,8 @@
                             <span class="flex-1 ms-3 whitespace-nowrap">Admin</span>
                     </button>
                 </a>
+                @endauth
+                
                 <li>
                     <a href="/pengadaan"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">

@@ -89,42 +89,16 @@
             <div>
                 <h2 class="text-xl font-semibold mb-4">Buku Lainnya</h2>
                 <ul>
+                    @foreach ($booksrandom as $random )
                     <li class="mb-4 flex">
                         <img src="https://via.placeholder.com/50" alt="Cover Majalah" class="w-12 h-16 mr-4">
                         <div>
-                            <h3 class="font-semibold">{{ $books->judul }}</h3>
+                            <a href="/books/{{ $random->id_buku }}">{{ $random->judul }}</a>
+                            
                         </div>
                     </li>
-                    <li class="mb-4 flex">
-                        <img src="https://via.placeholder.com/50" alt="Cover Majalah" class="w-12 h-16 mr-4">
-                        <div>
-                            <h3 class="font-semibold">{{ $books->judul }}</h3>
-                        </div>
-                    </li>
-                    <li class="mb-4 flex">
-                        <img src="https://via.placeholder.com/50" alt="Cover Majalah" class="w-12 h-16 mr-4">
-                        <div>
-                            <h3 class="font-semibold">{{ $books->judul }}</h3>
-                        </div>
-                    </li>
-                    <li class="mb-4 flex">
-                        <img src="https://via.placeholder.com/50" alt="Cover Majalah" class="w-12 h-16 mr-4">
-                        <div>
-                            <h3 class="font-semibold">{{ $books->judul }}</h3>
-                        </div>
-                    </li>
-                    <li class="mb-4 flex">
-                        <img src="https://via.placeholder.com/50" alt="Cover Majalah" class="w-12 h-16 mr-4">
-                        <div>
-                            <h3 class="font-semibold">{{ $books->judul }}</h3>
-                        </div>
-                    </li>
-                    <li class="mb-4 flex">
-                        <img src="https://via.placeholder.com/50" alt="Cover Majalah" class="w-12 h-16 mr-4">
-                        <div>
-                            <h3 class="font-semibold">{{ $books->judul }}</h3>
-                        </div>
-                    </li>
+                    @endforeach
+                    
                 </ul>
             </div>
         </div>
