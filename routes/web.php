@@ -1,11 +1,20 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\publisherController;
 use App\Http\Controllers\booksController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+
+//userview
+
+// Route::get ('userhome', [UserController::class,'functionhomepage'])->name('home');
+Route::get ('/userhome', [UserController::class, 'functionhomepage'])->name('booksrandom');
+Route::get ('/resultbook',[UserController::class, 'search'])->name('resultbook');
+Route::view('/usersearch', 'userview.searchpage')->name('searchpage');
+
 
 //navigasi
 Route::get('/pengadaan', [AdminController::class, 'indexpengadaan'])->middleware('auth');

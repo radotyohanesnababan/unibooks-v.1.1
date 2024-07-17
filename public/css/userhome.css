@@ -1,0 +1,222 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* border: 1px solid black; */
+    scroll-behavior: smooth;
+  }
+header {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    height: 60px;
+}
+
+header .logo {
+    width: 100px;
+}
+
+header nav {
+    max-width: 700px; /* Menentukan lebar maksimum untuk nav */
+    width: 100%;
+    }
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 30px ;
+}
+
+header nav ul li {
+    margin: 0;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+#home {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; /* Ensure full viewport height */
+
+}
+
+.new {
+    padding: 40px;
+    background-color: #f4f4f4;
+}
+
+.new-container {
+    display: flex;
+    justify-content: space-around;
+    text-align: justify ;
+}
+
+.new-item {
+    width: 400px;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.new-item img {
+    width: fit-content;
+    height: fit-content;
+    object-fit: cover;
+    margin: 0 auto;
+}
+
+.new-item h3{
+    font-weight: bold;
+    text-align: center;
+}
+
+.new-item p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0 16px 16px;
+    color: #555;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.new-item:hover {
+    transform: translateY(-10px) ;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    transition: 300ms;
+
+}
+
+
+.about {
+    margin-top: 40px;
+    padding: 40px;
+    background-color: #f4f4f4;
+}
+
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 40px 20px; /* Tambahkan padding atas dan bawah 40px, kiri dan kanan 20px */
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    text-align: left;
+}
+
+.contact, .address-map, .signup {
+    flex: 1;
+    min-width: 300px; /* Lebar minimum setiap bagian */
+    margin: 10px; /* Jarak antara setiap bagian */
+}
+
+.contact h3, .address h3, .signup h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.address-map {
+    display: flex;
+    flex-direction: column; /* Mengatur address dan map secara vertikal */
+}
+
+.map-container {
+    align-items: center;
+    margin-top: 20px;
+    width: 80%; /* Lebar peta */
+    height: 250px; /* Tinggi peta */
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Tambahkan bayangan untuk estetika */
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.signup h3{
+    align-items: center ;
+}
+.signup form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+}
+
+.signup input, .signup button {
+    padding: 10px;
+    width: 80%;
+    max-width: 800%; /* Lebar maksimum input dan button */
+    border: none;
+    border-radius: 5px;
+}
+
+.signup button {
+    background-color: #ff9900;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+}
+
+.signup button:hover {
+    background-color: #e68a00;
+}
+
+
+/* Media Queries for Responsive Design */
+@media (max-width: 1200px) {
+    .new-item {
+        width: 45%;
+    }
+}
+
+@media (max-width: 768px) {
+   
+    .new-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .new-item {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: rgba(0, 0, 0, 0.5);
+        
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    .signup input, .signup button {
+        max-width: 100%;
+    }
+
+    .map-container {
+        height: 200px;
+    }
+}

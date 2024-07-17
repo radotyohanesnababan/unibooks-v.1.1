@@ -47,7 +47,7 @@ class AdminController extends Controller
         if ($request->hasFile('coverimage')) {
             $coverimage = $request->file('coverimage');
             $coverimagename = time() . '.' . $coverimage->getClientOriginalExtension();
-            $coverimage->storeAs('public/storage/coverimage', $coverimagename);
+            $coverimage->storeAs('public/coverimage', $coverimagename);
             
         }
 

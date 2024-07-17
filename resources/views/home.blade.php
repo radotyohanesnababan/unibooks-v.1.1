@@ -193,6 +193,7 @@
                     class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
             </div>
         </form>
+
         <div class="p-4 mt-3 hidds">
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -241,95 +242,6 @@
                                     <div>
                                         <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" type="button" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-2.5 py-1.5  dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"><a href="{{ route('buku.show', $item->id_buku) }}">Selengkapnya</a></button>
                                     </div>
-                                    <div id="modalEdit"
-                                    class="hidds fixed inset-0 flex items-center justify-center bg-gray-600 bg-opacity-50 z-50 hidden">
-                                    <div class="relative p-5 border w-full max-w-lg shadow-lg rounded-md bg-white">
-                                        <div class="mt-3 text-center">
-                                            <h3 class="text-lg leading-6 font-medium text-gray-900">Edit Buku</h3>
-                                            <div class="mt-4">
-                                                <form method="POST"
-                                                    action="{{ route('books.update', $item->id_buku) }}"
-                                                    id="editBookForm" class="grid grid-cols-1 gap-6 ">
-                                                    @csrf
-                                                    @method('PUT')
-                                                    <div class="flex items-center">
-                                                        <label for="judul"
-                                                            class="w-1/4 text-gray-700 text-sm font-bold">Judul:</label>
-                                                        <input type="text" id="judul" name="judul"
-                                                            class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                            required>
-                                                    </div>
-                                                    <div class="flex items-center">
-                                                        <label for="penulis"
-                                                            class="w-1/4 text-gray-700 text-sm font-bold">Penulis:</label>
-                                                        <input type="text" id="penulis" name="penulis"
-                                                            class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                            required>
-                                                    </div>
-                                                    <div class="flex items-center">
-                                                        <label for="penerbit"
-                                                            class="w-1/4 text-gray-700 text-sm font-bold">Penerbit:</label>
-                                                        <select id="penerbit" name="nama_penerbit"
-                                                            class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                            required>
-                                                            <option value="">Select Penerbit</option>
-                                                            @foreach ($publisher as $items)
-                                                                <option value="{{ $items->nama_penerbit }}">
-                                                                    {{ $items->nama_penerbit }}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                    <div class="flex items-center">
-                                                        <label for="tahun_terbit"
-                                                            class="w-1/4 text-gray-700 text-sm font-bold">Tahun
-                                                            Terbit:</label>
-                                                        <input type="number" id="tahun_terbit"
-                                                            name="tahun_terbit"
-                                                            class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                            required>
-                                                    </div>
-                                                    <div class="flex items-center">
-                                                        <label for="genre"
-                                                            class="w-1/4 text-gray-700 text-sm font-bold">Genre:</label>
-                                                        <input type="text" id="genre" name="genre"
-                                                            class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                            required>
-                                                    </div>
-                                                    <div class="flex items-center">
-                                                        <label for="deskripsi"
-                                                            class="w-1/4 text-gray-700 text-sm font-bold">Deskripsi:</label>
-                                                        <textarea id="deskripsi" name="deskripsi"
-                                                            class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                            required></textarea>
-                                                    </div>
-                                                    <div class="flex items-center">
-                                                        <label for="stok"
-                                                            class="w-1/4 text-gray-700 text-sm font-bold">Stok:</label>
-                                                        <input type="number" id="stok" name="stok"
-                                                            class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                            required>
-                                                    </div>
-                                                    <div class="flex items-center">
-                                                        <label for="isbn"
-                                                            class="w-1/4 text-gray-700 text-sm font-bold">ISBN:</label>
-                                                        <input type="text" id="isbn" name="isbn"
-                                                            class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                                            required>
-                                                    </div>
-                                                    <div class="flex justify-between items-center mt-4">
-                                                        <div class=" flex items-center justify-between ">
-                                                            <button type="submit"
-                                                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Simpan</button>
-                                                        </div>
-                                                        <button type="button" id="closeModalEditBtn"
-                                                            class="text-gray-500 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-md text-sm font-medium py-2 px-4">Batal</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                    
                                 </td>
                             </tr>
                         @empty

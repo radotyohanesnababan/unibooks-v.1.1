@@ -53,7 +53,7 @@
     <div class="max-w-6xl mx-auto bg-white p-6 rounded-lg shadow-lg flex mt-20">
         <div class="w-3/4 pr-6">
             <div class="flex items-center mb-6">
-                <img src="https://via.placeholder.com/150" alt="Cover Buku" class="w-32 h-48 mr-6">
+                <img src="{{ asset ('storage/coverimage/' . $books->coverimage) }}" alt="{{ $books->judul }}" class="w-32 h-48 mr-6">
                 <div>
                     <h1 class="text-2xl font-bold">{{ $books->judul }}</h1>
                     <p class="mt-4 text-gray-700">{{ $books->deskripsi }}</p>
