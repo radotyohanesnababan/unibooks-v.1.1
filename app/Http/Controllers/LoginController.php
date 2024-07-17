@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\books;
 use App\Models\publisher;
+use Mckenziearts\Notify\Facades\LaravelNotify;
+use Mckenziearts\Notify\LaravelNotifyServiceProvider;
+
 
 class LoginController extends Controller
 {
@@ -27,10 +30,11 @@ class LoginController extends Controller
             'password' => $request->input('password'),
         ];
         if (Auth::Attempt($data)) {
+            notify()->success('Login Berhasil');
             return redirect('/admin');
-        }else{  
-            Session()->flash('error', 'Email atau Password salah');
-            return redirect('/');
+        }else{
+            notify()->error('Login Gagal');
+            return redirect('/login');
         }
     }
 

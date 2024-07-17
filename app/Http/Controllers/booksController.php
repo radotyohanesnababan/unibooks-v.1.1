@@ -14,6 +14,11 @@ class booksController extends Controller
         $publisher = publisher::all();
         return view('home', compact('books','publisher'));
     }
+    public function indexhome2(){
+        $books = books::orderBy('judul')->paginate(10);
+        $publisher = publisher::all();
+        return view('home2', compact('books','publisher'));
+    }
 
     public function bookaspenerbit($id_penerbit){
         $publisher = publisher::all();

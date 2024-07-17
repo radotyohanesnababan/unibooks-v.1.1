@@ -10,6 +10,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    @notifyCss
 </head>
 <body>
   
@@ -56,5 +57,7 @@
   </div>
 </div>
 </div>
+<x-notify::notify/>
+@notifyJs
 </body>
 </html>

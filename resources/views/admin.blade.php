@@ -12,6 +12,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <link rel="stylesheet" href="<?php echo asset('css/style.css'); ?>" type="text/css">
+    @notifyCss
     <style>
         .modal {
             transition: opacity 0.5s ease;
@@ -26,17 +27,29 @@
             opacity: 1;
         }
     </style>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.getElementById('logo-sidebar');
+            const toggleButton = document.getElementById('toggle-sidebar');
+
+            toggleButton.addEventListener('click', function() {
+                sidebar.classList.toggle('-translate-x-full');
+                sidebar.classList.toggle('translate-x-0');
+            });
+        });
+    </script>
 
 </head>
 
 <body>
-    <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+
+    <nav class="absolute top-0 w-full bg-[#9fc088] border-b border-gray-200 dark:bg-[#97b681] dark:border-[#9fc088]">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
             <div class="flex items-center justify-between">
-                <div class="flex items-center justify-start rtl:justify-end">
+                <div class="flex items-center justify-between">
                     <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar"
                         aria-controls="logo-sidebar" type="button"
-                        class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                        class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[#9fc088] dark:text-[#9fc088] dark:hover:bg-[#9fc088] dark:focus:ring-[#9fc088]">
                         <span class="sr-only">Open sidebar</span>
                         <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg">
@@ -45,11 +58,17 @@
                             </path>
                         </svg>
                     </button>
-                    <a href="https://flowbite.com" class="flex ms-2 md:me-24">
-                        <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 me-3" alt="FlowBite Logo" />
-                        <span
-                            class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Unibooks</span>
-                    </a>
+                    <div>
+                        <a href="https://flowbite.com" class="flex ms-2 md:me-24">
+                            <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 me-3" alt="FlowBite Logo" />
+                            <span
+                                class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Unibooks</span>
+                        </a>
+                    </div>
+
+                </div>
+                <div>
+
                 </div>
                 <div class="flex items-center">
                     <a href="{{ route('actionlogout') }}">
@@ -73,7 +92,7 @@
                                         alt="user photo">
                                 </button>
                             </div>
-                            <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
+                            <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-[#9fc088] dark:divide-[#9fc088]"
                                 id="dropdown-user">
                                 <div class="px-4 py-3" role="none">
                                     <p class="text-sm text-gray-900 dark:text-white" role="none">
@@ -91,98 +110,91 @@
             </div>
         </div>
     </nav>
-    <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar"
-        type="button"
-        class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
-        <span class="sr-only">Open sidebar</span>
-        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg">
-            <path clip-rule="evenodd" fill-rule="evenodd"
-                d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
-            </path>
-        </svg>
-    </button>
     <aside id="logo-sidebar"
         class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
         aria-label="Sidebar">
-        <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+        <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-[#91af7c]">
+            {{--  --}}
             <a href="https://google.com/" class="flex items-center ps-2.5 mb-5">
                 <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Unibooks</span>
             </a>
             <ul class="space-y-2 font-medium">
                 <li>
                     <a href="/"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-[#9fc088] group">
                         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                             viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2"
                                 d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5" />
                         </svg>
                         <span class="flex-1 ms-3 whitespace-nowrap">Home</span>
                     </a>
                 </li>
                 <li class="relative">
-                    <li class="relative">
-                        <a>
-                            <button id="dropdownUsersButton"
-                                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group w-full text-left"
-                                type="button">
-                                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                    <path fill-rule="evenodd"
-                                        d="M11.32 6.176H5c-1.105 0-2 .949-2 2.118v10.588C3 20.052 3.895 21 5 21h11c1.105 0 2-.948 2-2.118v-7.75l-3.914 4.144A2.46 2.46 0 0 1 12.81 16l-2.681.568c-1.75.37-3.292-1.263-2.942-3.115l.536-2.839c.097-.512.335-.983.684-1.352l2.914-3.086Z"
-                                        clip-rule="evenodd" />
-                                    <path fill-rule="evenodd"
-                                        d="M19.846 4.318a2.148 2.148 0 0 0-.437-.692 2.014 2.014 0 0 0-.654-.463 1.92 1.92 0 0 0-1.544 0 2.014 2.014 0 0 0-.654.463l-.546.578 2.852 3.02.546-.579a2.14 2.14 0 0 0 .437-.692 2.244 2.244 0 0 0 0-1.635ZM17.45 8.721 14.597 5.7 9.82 10.76a.54.54 0 0 0-.137.27l-.536 2.84c-.07.37.239.696.588.622l2.682-.567a.492.492 0 0 0 .255-.145l4.778-5.06Z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span class="flex-1 ms-3 whitespace-nowrap">Penerbit</span>
-                                <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                    fill="none" viewBox="0 0 10 6">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m1 1 4 4 4-4" />
-                                </svg>
-                            </button>
-                        </a>
-                        <div id="dropdownUsers"
-                            class="hidden divide-y divide-gray-100 bg-gray-50 dark:bg-gray-800 rounded-lg shadow">
-                            <ul class="py-2 text-gray-700 dark:text-gray-200">
-                                @forelse ($publisher as $item )
-                                    <li>
-                                        <a href="/bookaspenerbit/{{ $item->id_penerbit }}"
-                                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
-                                            {{ $item->nama_penerbit }}
-                                        </a>
-                                    </li>
-                                @empty
-                                @endforelse
-                            </ul>
-                        </div>
-                    </li>
-                    <script>
-                        document.getElementById('dropdownUsersButton').addEventListener('click', function() {
-                            const dropdown = document.getElementById('dropdownUsers');
-                            dropdown.classList.toggle('hidden');
-                        });
-                    </script>
-                <li >
+                <li class="relative">
+                    <a>
+                        <button id="dropdownUsersButton"
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-[#9fc088] group w-full text-left"
+                            type="button">
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd"
+                                    d="M11.32 6.176H5c-1.105 0-2 .949-2 2.118v10.588C3 20.052 3.895 21 5 21h11c1.105 0 2-.948 2-2.118v-7.75l-3.914 4.144A2.46 2.46 0 0 1 12.81 16l-2.681.568c-1.75.37-3.292-1.263-2.942-3.115l.536-2.839c.097-.512.335-.983.684-1.352l2.914-3.086Z"
+                                    clip-rule="evenodd" />
+                                <path fill-rule="evenodd"
+                                    d="M19.846 4.318a2.148 2.148 0 0 0-.437-.692 2.014 2.014 0 0 0-.654-.463 1.92 1.92 0 0 0-1.544 0 2.014 2.014 0 0 0-.654.463l-.546.578 2.852 3.02.546-.579a2.14 2.14 0 0 0 .437-.692 2.244 2.244 0 0 0 0-1.635ZM17.45 8.721 14.597 5.7 9.82 10.76a.54.54 0 0 0-.137.27l-.536 2.84c-.07.37.239.696.588.622l2.682-.567a.492.492 0 0 0 .255-.145l4.778-5.06Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span class="flex-1 ms-3 whitespace-nowrap">Penerbit</span>
+                            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 4 4 4-4" />
+                            </svg>
+                        </button>
+                    </a>
+                    <div id="dropdownUsers"
+                        class="hidden divide-y divide-gray-100 bg-gray-50 dark:bg-[#9fc088] rounded-lg shadow">
+                        <ul class="py-2 text-gray-700 dark:text-gray-200">
+                            @forelse ($publisher as $item)
+                                <li>
+                                    <a href="/bookaspenerbit/{{ $item->id_penerbit }}"
+                                        class="block px-4 py-2 hover:bg-gray-800 dark:hover:bg-[#678750]">
+                                        {{ $item->nama_penerbit }}
+                                    </a>
+                                </li>
+                            @empty
+                            @endforelse
+                        </ul>
+                    </div>
+                </li>
+                <script>
+                    document.getElementById('dropdownUsersButton').addEventListener('click', function() {
+                        const dropdown = document.getElementById('dropdownUsers');
+                        dropdown.classList.toggle('hidden');
+                    });
+                </script>
+                <li>
                     <a href="/admin">
                         <button id="dropdownUsersButton"
                             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-gray bg-gray-50 dark:bg-gray-50 group w-full text-left"
                             type="button">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
-                              </svg>
-                              
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
+                            </svg>
+
                             <span class="flex-1 ms-3 whitespace-nowrap">Admin</span>
                         </button>
                     </a>
                 </li>
-                
+
                 <li>
                     <a href="/pengadaan"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-[#9fc088] group">
                         <svg class="w-[24px] h-[24px] text-gray-800 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                             viewBox="0 0 24 24">
@@ -197,35 +209,35 @@
         </div>
     </aside>
 
-    
 
-    <div class="mt-12 p-4 sm:ml-64">
+
+    <div class="mt-12 p-4 sm:ml-64 bg-[#e8e6d9] ">
         <div class="relative overflow-x-auto sm:rounded-lg justify-center">
             <div class="">
                 <form action="{{ route('admin.search') }}" method="GET" class="max-w-lg mx-auto">
                     <label for="default-search"
-                        class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                        class="mb-2 text-sm font-medium text-[#9fc088] sr-only dark:text-white">Search</label>
                     <div class="relative">
                         <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                            <svg class="w-4 h-4 text-gray-700 dark:text-gray-400" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                             </svg>
                         </div>
                         <input type="text" name= "search" id="default-search"
-                            class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            class="block w-full p-4 ps-10 text-sm text-black border border-gray-700 rounded-lg bg-gray-700 dark:bg-[#9fc088] dark:border-gray-800 dark:placeholder-gray-700 dark:text-black"
                             placeholder="Search Books..." value="{{ $query ?? '' }}" required />
                         <input type="hidden" name ="page" value="admin">
                         <button type="submit"
-                            class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                            class="text-gray-700 hover:text-white absolute end-2.5 bottom-2.5 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-[#83b65f] dark:hover:bg-[#4e6b3a] dark:focus:ring-blue-800">Search</button>
                     </div>
                 </form>
             </div>
             <div class="flex justify-end mt-2 justify-between">
                 <div class="ml-4">
                     <button id="downloadCSV" type="button"
-                        class=" text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-8 py-1.5 me-1 mb-1 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">
+                        class=" text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-8 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800">
                         Print as CSV
                     </button>
                 </div>
@@ -238,32 +250,35 @@
 
             </div>
         </div>
-        <div class="p-4 mt-3 rounded-lg dark:border-gray-700">
+        <div class="p-4 mt-3 rounded-lg dark:border-[#9fc088]">
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <table id = "bookstable"
                     class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
                         <tr>
-                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">Judul</th>
-                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">ID Buku</th>
-                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">Penulis</th>
-                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">Penerbit
+                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-[#87a472]">Judul</th>
+                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-[#87a472]">ID Buku
                             </th>
-                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">Tahun Terbit
+                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-[#87a472]">Penulis
                             </th>
-                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">Genre</th>
-                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">Deskripsi
+                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-[#87a472]">Penerbit
                             </th>
-                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">Stok</th>
-                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">ISBN</th>
-                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">Aksi</th>
+                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-[#87a472]">Tahun
+                                Terbit
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-[#87a472]">Genre</th>
+                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-[#87a472]">Deskripsi
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-[#87a472]">Stok</th>
+                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-[#87a472]">ISBN</th>
+                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-[#87a472]">Aksi</th>
                         </tr>
                     </thead>
                     <tbody id="booksTableBody">
                         @forelse ($books as $item)
                             <tr class="border-b border-gray-200 dark:border-gray-700">
 
-                                {{-- <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">{{ $item->judul }}</th> --}}
+
                                 <td
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
                                     {{ $item->judul }}</td>
@@ -294,36 +309,15 @@
                                 <td
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:bg-gray-200">
                                     <div>
-                                        <button id="openModalEditBtn" class="text-blue-600 hover:text-blue-800"
+                                        <button id="openModalEditBtn" name="editBtn"
+                                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-gblue-300 font-medium rounded-lg text-sm px-5 py-0.5 me-0.5 mb-0.5 dark:bg-blue-600 dark:hover:bg-blue700 focus:outline-none dark:focus:ring-blue-800"
                                             onclick="editBook(this)">
-                                            <svg class="w-6 h-6 text-blue-600 hover:text-blue-800" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                fill="none" viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2"
-                                                    d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z" />
-                                            </svg>
+                                            Edit
                                         </button>
                                         <button data-modal-target="popup-modal-{{ $item->id_buku }}"
                                             data-modal-toggle="popup-modal-{{ $item->id_buku }}"
-                                            class="text-red-600 hover:text-red-800">
-                                            <svg class="w-6 h-6 text-red-600 hover:text-red-800" aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                fill="none" viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2"
-                                                    d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z" />
-                                            </svg>
-                                        </button>
-                                        <button data-modal-target="popup-modal" data-modal-toggle="popup-modal"
-                                            class="text-green-600 hover:text-green-800">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                class="size-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                                            </svg>
-
+                                            class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-0.5 me-10.5 mb-0.5 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800">
+                                            Hapus
                                         </button>
                                     </div>
                                     <div id="modalEdit"
@@ -566,12 +560,7 @@
                 {{ $books->links() }}
             </div>
         </div>
-        @if (session('success'))
-            <div
-                class="bg-green-100 border font-semibold border-green-400 text-green-700 px-4 py-3 rounded relative text-center">
-                {{ session('success') }}
-            </div>
-        @endif
+
         <footer class="bg-white rounded-lg m-2 light:bg-gray-800" style="bottom:0 ; width:fit-content">
             <div class="w-full max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
                 <span class="text-sm font-bold text-gray-900 sm:text-center dark:text-gray-900">© 2024 <a
@@ -580,10 +569,11 @@
             </div>
         </footer>
     </div>
-
+    <x-notify::notify />
     <script src="{{ asset('js/modal.js') }}"></script>
     <script src="{{ asset('js/animation.js') }}"></script>
     <script src="{{ asset('js/downloadCSV.js') }}"></script>
+    @notifyJs
 </body>
 
 </html>

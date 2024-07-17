@@ -21,7 +21,8 @@ class RegisterController extends Controller
                 'email' => $request->input('email'),
                 'password' => $request->input('password'),
             ]);
-            return redirect('/login')->with('success', 'Registrasi Berhasil');
+            notify()->success('Registrasi Berhasil');
+            return redirect('/login');
         }
         catch(QueryException $e){
             if ($e->getCode() == '23000') {

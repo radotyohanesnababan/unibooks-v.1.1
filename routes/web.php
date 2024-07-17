@@ -11,6 +11,7 @@ use App\Http\Controllers\RegisterController;
 Route::get('/pengadaan', [AdminController::class, 'indexpengadaan'])->middleware('auth');
 Route::get('/admin', [AdminController::class, 'index'])->name('get_books')->middleware('auth');
 Route::get('/',[BooksController::class, 'indexhome'])->name('home');
+Route::get('/home2',[BooksController::class, 'indexhome2'])->name('home2');
 
 //login-logout
 Route::get('/login', [LoginController::class, 'login'])->name('login');
@@ -21,9 +22,6 @@ Route::get('actionlogout',[LoginController::class, 'actionlogout'])->name('actio
 Route::get('/register', [RegisterController::class, 'register'])->name('register');
 Route::post('/register', [RegisterController::class, 'actionregister'])->name('actionregister');
 
-
-
-
 //aksi
 
 //search-books-page
@@ -32,6 +30,8 @@ Route::get('/books',[booksController::class, 'search'])->name('home.search');
 Route::get('/admin/books',[booksController::class, 'search'])->name('admin.search');
 //search-pengadaan-page
 Route::get('/pengadaan/books',[booksController::class, 'search'])->name('pengadaan.search');
+
+
 
 //add-books
 Route::post('/admin', [AdminController::class, 'store'])->name('store_books');
@@ -43,8 +43,6 @@ Route::delete('/books/{id_buku}', [AdminController::class, 'destroy'])->name('bu
 Route::put('books/{id_buku}', [AdminController::class, 'update'])->name('books.update');
 //show-books-detail
 Route::get('/books/{id_buku}', [booksController::class, 'show'])->name('buku.show');
-//printCSV
-Route::get('/exportcsv', [AdminController::class, 'exportCSV'])->name('exportcsv');
 
 //viewbookaspenerbit
 Route::get('/bookaspenerbit/{id_penerbit}', [booksController::class, 'bookaspenerbit'])->name('viewaspenerbit');

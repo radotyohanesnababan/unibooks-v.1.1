@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,10 +11,11 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
     <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="<?php echo asset('css/style.css')?>" type="text/css">
+    <link rel="stylesheet" href="<?php echo asset('css/style.css'); ?>" type="text/css">
 </head>
+
 <body>
-<nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+    <nav class="absolute top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
             <div class="flex items-center justify-between">
                 <div class="flex items-center justify-start rtl:justify-end">
@@ -43,12 +45,12 @@
                             </button>
                         </div>
                     </a>
-                    </div>
                 </div>
             </div>
         </div>
+        </div>
     </nav>
-    <div class="max-w-6xl mx-auto bg-white p-6 rounded-lg shadow-lg flex mt-16">
+    <div class="max-w-6xl mx-auto bg-white p-6 rounded-lg shadow-lg flex mt-20">
         <div class="w-3/4 pr-6">
             <div class="flex items-center mb-6">
                 <img src="https://via.placeholder.com/150" alt="Cover Buku" class="w-32 h-48 mr-6">
@@ -61,47 +63,53 @@
                 <h2 class="text-xl font-semibold mb-4">Deskripsi Buku</h2>
                 <table class="min-w-full bg-white border border-gray-200">
                     <tbody>
-                    <tr class="bg-gray-50">
-                        <td class="py-2 px-4 border-b border-gray-200 font-semibold">Judul</td>
-                        <td class="py-2 px-4 border-b border-gray-200">{{ $books->judul }}</td>
-                    </tr>
-                    <tr>
-                        <td class="py-2 px-4 border-b border-gray-200 font-semibold">Majalah</td>
-                        <td class="py-2 px-4 border-b border-gray-200">{{ $books->penulis }}</td>
-                    </tr>
-                    <tr class="bg-gray-50">
-                        <td class="py-2 px-4 border-b border-gray-200 font-semibold">Penerbit</td>
-                        <td class="py-2 px-4 border-b border-gray-200">{{ $books->publisher->nama_penerbit }}</td>
-                    </tr>
-                    <tr>
-                        <td class="py-2 px-4 border-b border-gray-200 font-semibold">ISBN</td>
-                        <td class="py-2 px-4 border-b border-gray-200">{{ $books->isbn }}</td>
-                    </tr>
-                    <tr class="bg-gray-50">
-                        <td class="py-2 px-4 border-b border-gray-200 font-semibold">Genre</td>
-                        <td class="py-2 px-4 border-b border-gray-200">{{ $books->genre }}</td>
-                    </tr>
+                        <tr class="bg-gray-50">
+                            <td class="py-2 px-4 border-b border-gray-200 font-semibold">Judul</td>
+                            <td class="py-2 px-4 border-b border-gray-200">{{ $books->judul }}</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-4 border-b border-gray-200 font-semibold">Penulis</td>
+                            <td class="py-2 px-4 border-b border-gray-200">{{ $books->penulis }}</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="py-2 px-4 border-b border-gray-200 font-semibold">Penerbit</td>
+                            <td class="py-2 px-4 border-b border-gray-200">{{ $books->publisher->nama_penerbit }}</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-4 border-b border-gray-200 font-semibold">ISBN</td>
+                            <td class="py-2 px-4 border-b border-gray-200">{{ $books->isbn }}</td>
+                        </tr>
+                        <tr class="bg-gray-50">
+                            <td class="py-2 px-4 border-b border-gray-200 font-semibold">Genre</td>
+                            <td class="py-2 px-4 border-b border-gray-200">{{ $books->genre }}</td>
+                        </tr>
 
-                </tbody>
+                    </tbody>
                 </table>
             </div>
         </div>
-            <div>
-                <h2 class="text-xl font-semibold mb-4">Buku Lainnya</h2>
-                <ul>
-                    @foreach ($booksrandom as $random )
-                    <li class="mb-4 flex">
-                        <img src="https://via.placeholder.com/50" alt="Cover Majalah" class="w-12 h-16 mr-4">
-                        <div>
-                            <a href="/books/{{ $random->id_buku }}">{{ $random->judul }}</a>
-                            
-                        </div>
+        <div>
+            <h2 class="text-xl font-semibold mb-4">Buku Lainnya</h2>
+            <ul>
+                @foreach ($booksrandom as $random)
+                    <li class="mb-4 flex hover:bg-gray-200">
+                        <button onclick="window.location.href='/books/{{ $random->id_buku }}'">
+                            <li class="mb-1 flex">
+                                <img src="https://via.placeholder.com/50" alt="Cover Majalah" class="w-12 h-16 mr-2">
+                                <div class="flex text-left">
+                                    <a href="/books/{{ $random->id_buku }}">{{ $random->judul }}</a>
+                                </div>
+                            </li>
+                        </button>
                     </li>
-                    @endforeach
                     
-                </ul>
-            </div>
+                @endforeach
+
+
+            </ul>
         </div>
     </div>
+    </div>
 </body>
+
 <body>

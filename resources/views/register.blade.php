@@ -22,6 +22,7 @@
             opacity: 1;
         }
     </style>
+    @notifyCss
 </head>
 <body>
     <!-- component -->
@@ -140,5 +141,6 @@
       </div>
     </div>
   </div>
+  @notifyJs
 </body>
 </html>

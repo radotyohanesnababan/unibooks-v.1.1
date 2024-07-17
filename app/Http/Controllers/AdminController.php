@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\books;
 use App\Models\publisher;
 use Illuminate\Http\RedirectResponse;
+use Mckenziearts\Notify\LaravelNotify;
+use Mckenziearts\Notify\LaravelNotifyServiceProvider;
 
 class AdminController extends Controller
 {
@@ -49,7 +51,8 @@ class AdminController extends Controller
         $books->stok = $request->stok;
         $books->isbn = $request->isbn;
         $books->save();
-        return redirect()->route('get_books')->with(['success'=>'Buku Berhasil Disimpan']);
+        notify()->success('Buku berhasil disimpan!');
+        return redirect()->route('get_books');
         //return response()->json(['message' => 'Data buku berhasil disimpan'], 201);
     }
 
@@ -59,13 +62,9 @@ class AdminController extends Controller
         $books = books::findOrFail($id_buku);
         $books->delete(); 
         
-        //return response()->json(['message' => 'Book deleted successfully.'],201);
+        notify()->success('Buku berhasil dihapus!');
         return redirect()->route('get_books')->with(['success'=>'Buku berhasil dihapus!']);
     }
-
-    
-
-    
     public function update(Request $request, $id_buku){
         // dd($request->all());
         $books=books::findOrFail($id_buku);
@@ -92,14 +91,11 @@ class AdminController extends Controller
         $books->stok = $request->stok;
         $books->isbn = $request->isbn;
         $books->save();
-        //return response()->json(['message' => 'Buku berhasil diperbaui.'],200);
-        return redirect()->route('get_books')->with(['success'=>'Buku Berhasil Diperbaharui']);
+        notify()->success('Buku berhasil diperbarui!');
+        return redirect()->route('get_books');
     }
 
-    public function exportCSV(){
-        $books = books::all();
-        return response()->json($books);
-    }
+
 
     
 
