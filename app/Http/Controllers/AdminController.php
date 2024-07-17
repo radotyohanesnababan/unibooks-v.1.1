@@ -28,7 +28,7 @@ class AdminController extends Controller
     //addbooks
     public function store(Request $request)
     {
-        //dd($request->all());
+        // dd($request->all());
         $request->validate([
             'judul' => 'required|string|max:255',
             'penulis' => 'required|string|max:255',
@@ -37,10 +37,20 @@ class AdminController extends Controller
             'genre' => 'required|string|max:100',
             'deskripsi' => 'required|string',
             'stok' => 'required|integer',
-            'isbn' => 'required|string|max:13'
+            'isbn' => 'required|string|max:13',
+            'coverimage'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
         ]);
-        // Temukan penerbit berdasarkan nama_penerbit dari request
+        
+
         $publisher = publisher::where('nama_penerbit', $request->input('nama_penerbit'))->first();
+
+        if ($request->hasFile('coverimage')) {
+            $coverimage = $request->file('coverimage');
+            $coverimagename = time() . '.' . $coverimage->getClientOriginalExtension();
+            $coverimage->storeAs('public/storage/coverimage', $coverimagename);
+            
+        }
+
         $books = new books();
         $books->judul = $request->judul;
         $books->penulis = $request->penulis;
@@ -50,6 +60,7 @@ class AdminController extends Controller
         $books->deskripsi = $request->deskripsi;
         $books->stok = $request->stok;
         $books->isbn = $request->isbn;
+        $books->coverimage = $coverimagename;
         $books->save();
         notify()->success('Buku berhasil disimpan!');
         return redirect()->route('get_books');

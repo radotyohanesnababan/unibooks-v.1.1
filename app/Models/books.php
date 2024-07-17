@@ -11,7 +11,6 @@ class books extends Model
     protected $table = 'tb_buku';
     protected $primaryKey = 'id_buku';
     protected $guarded = [];
-    public $timestamps = false;
     protected $fillable = [
         'judul',
         'penulis',
@@ -19,7 +18,8 @@ class books extends Model
         'genre',
         'deskripsi',
         'stok',
-        'isbn'
+        'isbn',
+        'coverimage'
     ];
     public function publisher(){
         return $this->belongsTo(publisher::class, 'id_penerbit', 'id_penerbit');

@@ -43,7 +43,7 @@
 
 <body>
 
-    <nav class="absolute top-0 w-full bg-[#9fc088] border-b border-gray-200 dark:bg-[#97b681] dark:border-[#9fc088]">
+    <nav class="absolute top-0 w-full bg-[#9fc088] border-b border-gray-200 dark:bg-gray-800 dark:border-[#9fc088]">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
             <div class="flex items-center justify-between">
                 <div class="flex items-center justify-between">
@@ -113,7 +113,7 @@
     <aside id="logo-sidebar"
         class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
         aria-label="Sidebar">
-        <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-[#91af7c]">
+        <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
             {{--  --}}
             <a href="https://google.com/" class="flex items-center ps-2.5 mb-5">
                 <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Unibooks</span>
@@ -125,8 +125,7 @@
                         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                             viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2"
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5" />
                         </svg>
                         <span class="flex-1 ms-3 whitespace-nowrap">Home</span>
@@ -211,7 +210,7 @@
 
 
 
-    <div class="mt-12 p-4 sm:ml-64 bg-[#e8e6d9] ">
+    <div class="mt-12 p-4 sm:ml-64 bg-white ">
         <div class="relative overflow-x-auto sm:rounded-lg justify-center">
             <div class="">
                 <form action="{{ route('admin.search') }}" method="GET" class="max-w-lg mx-auto">
@@ -418,7 +417,7 @@
                                                     Buku</h3>
                                                 <div class="mt-4">
                                                     <form method="POST" action="{{ route('store_books') }}"
-                                                        id="addBookForm" class="grid grid-cols-1 gap-6">
+                                                        id="addBookForm" class="grid grid-cols-1 gap-6" enctype="multipart/form-data">
                                                         @csrf
                                                         <div class="flex items-center">
                                                             <label for="judul"
@@ -483,6 +482,14 @@
                                                             <input type="text" id="isbn" name="isbn"
                                                                 class="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                                                 required>
+                                                        </div>
+                                                        <div class="flex items-center">
+                                                            <label for="coverimage"
+                                                                class="w-1/4 text-gray-700 text-sm font-bold">Upload Cover:</label>
+                                                            <input
+                                                                class="block text-sm w-3/4 text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                                                aria-describedby="user_avatar_help" id="coverimage" name="coverimage"
+                                                                type="file">
                                                         </div>
                                                         <div class="flex justify-between items-center mt-4">
                                                             <div class=" flex items-center justify-between ">

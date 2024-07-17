@@ -6,25 +6,25 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
-    {
-        Schema::create('publisher', function (Blueprint $table) {
-            $table->id("id_penerbit");
-            $table->string("nama_penerbit");
-            $table->text("alamat");
-            $table->string("nomor_telepon");
-            $table->string("email");
-        });
-    }
+    // /**
+    //  * Run the migrations.
+    //  */
+    // public function up(): void
+    // {
+    //     Schema::create('publisher', function (Blueprint $table) {
+    //         $table->id("id_penerbit");
+    //         $table->string("nama_penerbit");
+    //         $table->text("alamat");
+    //         $table->string("nomor_telepon");
+    //         $table->string("email");
+    //     });
+    // }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists('publisher');
-    }
+    // /**
+    //  * Reverse the migrations.
+    //  */
+    // public function down(): void
+    // {
+    //     Schema::dropIfExists('publisher');
+    // }
 };
