@@ -1,7 +1,12 @@
 # UNIBOOK 
 "Sistem Pengadaan Buku"
 
-## Fungsionalitas
+## Welcome Page
+1. Welcome Page
+2. Result Search
+
+
+## Fungsionalitas Admin
 1. Fungsi Input Buku
 2. Fungsi Delete Buku
 3. Fungsi View Buku
