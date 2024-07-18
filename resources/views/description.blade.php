@@ -37,14 +37,25 @@
                     </a>
                 </div>
                 <div class="flex items-center">
-                    <a href="/usersearch">
+                    <a href="/userhome">
                         <div class="ml-7">
                             <button type="submit"
                                 class="inline-flex items-center px-5 py-1.5 text-sm font-medium text-center text-white bg-red-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-red-900">
-                                Back
+                                Back to Home
                             </button>
+
                         </div>
                     </a>
+                    @auth
+                        <a href="/">
+                            <div class="ml-7">
+                                <button type="submit"
+                                    class="inline-flex items-center px-5 py-1.5 text-sm font-medium text-center text-white bg-red-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-red-900">
+                                    Back to Admin
+                                </button>
+                            </div>
+                        </a>
+                    @endauth
                 </div>
             </div>
         </div>
@@ -53,7 +64,8 @@
     <div class="max-w-6xl mx-auto bg-white p-6 rounded-lg shadow-lg flex mt-20">
         <div class="w-3/4 pr-6">
             <div class="flex items-center mb-6">
-                <img src="{{ asset ('storage/coverimage/' . $books->coverimage) }}" alt="{{ $books->judul }}" class="w-32 h-48 mr-6">
+                <img src="{{ asset('storage/coverimage/' . $books->coverimage) }}" alt="{{ $books->judul }}"
+                    class="w-32 h-48 mr-6">
                 <div>
                     <h1 class="text-2xl font-bold">{{ $books->judul }}</h1>
                     <p class="mt-4 text-gray-700">{{ $books->deskripsi }}</p>
@@ -94,15 +106,15 @@
                 @foreach ($booksrandom as $random)
                     <li class="mb-4 flex hover:bg-gray-200">
                         <button onclick="window.location.href='/books/{{ $random->id_buku }}'">
-                            <li class="mb-1 flex">
-                                <img src="{{ asset ('storage/coverimage/' . $random->coverimage) }}" alt="{{ $books->judul }}" class="w-12 h-16 mr-2">
-                                <div class="flex text-left">
-                                    <a href="/books/{{ $random->id_buku }}">{{ $random->judul }}</a>
-                                </div>
-                            </li>
-                        </button>
+                    <li class="mb-1 flex">
+                        <img src="{{ asset('storage/coverimage/' . $random->coverimage) }}" alt="{{ $books->judul }}"
+                            class="w-12 h-16 mr-2">
+                        <div class="flex text-left">
+                            <a href="/books/{{ $random->id_buku }}">{{ $random->judul }}</a>
+                        </div>
                     </li>
-                    
+                    </button>
+                    </li>
                 @endforeach
 
 
