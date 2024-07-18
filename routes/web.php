@@ -13,7 +13,7 @@ use App\Http\Controllers\RegisterController;
 // Route::get ('userhome', [UserController::class,'functionhomepage'])->name('home');
 Route::get ('/userhome', [UserController::class, 'functionhomepage'])->name('booksrandom');
 Route::get ('/resultbook',[UserController::class, 'search'])->name('resultbook');
-Route::view('/usersearch', 'userview.searchpage')->name('searchpage');
+//Route::view('/usersearch', 'userview.searchpage')->name('searchpage');
 
 
 //navigasi

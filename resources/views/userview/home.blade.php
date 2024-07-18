@@ -30,7 +30,7 @@
     <nav class="bg-white dark:bg-gray-900 fixed w-full z-50 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="./book/Logo Book.jpg" class="h-10 w-10" alt="Logo" />
+                <img src="{{ asset('storage/1721208666.png') }}" class="h-10 w-10" alt="Logo" />
             </a>
             <button data-collapse-toggle="navbar-default" type="button"
                 class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -51,7 +51,7 @@
                             aria-current="#home">Home</a>
                     </li>
                     <li>
-                        <a href="#news"
+                        <a href="#new"
                             class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                             aria-current="#news">New Arrival</a>
                     </li>
@@ -65,11 +65,11 @@
                             class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                             aria-current="#about">About</a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="/usersearch"
                             class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                             aria-current="#about">Cari Buku</a>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </div>
@@ -83,8 +83,28 @@
                 UniBooks Store</h1>
             <p class="mb-8 text-lg font-normal text-white lg:text-xl">Temukan Petualangan Tanpa Batas di Setiap Buku
                 yang Anda Baca.</p>
+            <form class="max-w-md mx-auto" action="{{ route('resultbook') }}" method="GET" >
+                <label for="default-search"
+                    class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                <div class="relative">
+                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                        </svg>
+                    </div>
+                    <input type="search" required id="search" name="query" type="text" value="{{ $query ?? '' }}"
+                        class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Cari Buku Disini.." />
+                    <button type="submit"
+                        class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                </div>
+            </form>
         </div>
     </section>
+
+
 
 
 
@@ -95,10 +115,10 @@
                 <div class="new-item rounded-lg">
                     <a href="{{ url('books/' . $item->id_buku) }}">
                         <img src="{{ asset('storage/coverimage/' . $item->coverimage) }}" alt="{{ $item->judul }}">
-                    <h3>{{ $item->judul }}</h3>
-                    <p>{{ $item->deskripsi }}</p>
+                        <h3>{{ $item->judul }}</h3>
+                        <p>{{ $item->deskripsi }}</p>
                     </a>
-                    
+
                 </div>
             @empty
                 <div>No books found.</div>
@@ -116,10 +136,10 @@
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
                         <a href="{{ url('books/' . $item->id_buku) }}">
                             <img src="{{ asset('storage/coverimage/' . $item->coverimage) }}"
-                            class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                            alt="{{ $item->judul }}">
+                                class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                alt="{{ $item->judul }}">
                         </a>
-                        
+
                     </div>
                 @empty
                     <div>No books found.</div>
@@ -135,8 +155,8 @@
                         class="text-gray-400 hover:text-gray-900 dark:hover:text-white group-focus:text-gray-900 dark:group-focus:text-white">
                         <svg class="rtl:rotate-180 w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                             fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 5H1m0 0 4 4M1 5l4-4" />
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4" />
                         </svg>
                         <span class="sr-only">Previous</span>
                     </span>
@@ -148,8 +168,8 @@
                         class="text-gray-400 hover:text-gray-900 dark:hover:text-white group-focus:text-gray-900 dark:group-focus:text-white">
                         <svg class="rtl:rotate-180 w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                             fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
                         </svg>
                         <span class="sr-only">Next</span>
                     </span>

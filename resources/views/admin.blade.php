@@ -121,7 +121,7 @@
             <ul class="space-y-2 font-medium">
                 <li>
                     <a href="/"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-[#9fc088] group">
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                             viewBox="0 0 24 24">
@@ -135,7 +135,7 @@
                 <li class="relative">
                     <a>
                         <button id="dropdownUsersButton"
-                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-[#9fc088] group w-full text-left"
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group w-full text-left"
                             type="button">
                             <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
@@ -155,12 +155,12 @@
                         </button>
                     </a>
                     <div id="dropdownUsers"
-                        class="hidden divide-y divide-gray-100 bg-gray-50 dark:bg-[#9fc088] rounded-lg shadow">
+                        class="hidden divide-y divide-gray-100 bg-gray-50 dark:bg-gray-700 rounded-lg shadow">
                         <ul class="py-2 text-gray-700 dark:text-gray-200">
                             @forelse ($publisher as $item)
                                 <li>
                                     <a href="/bookaspenerbit/{{ $item->id_penerbit }}"
-                                        class="block px-4 py-2 hover:bg-gray-800 dark:hover:bg-[#678750]">
+                                        class="block px-4 py-2 hover:bg-gray-800 dark:hover:bg-gray-700">
                                         {{ $item->nama_penerbit }}
                                     </a>
                                 </li>
@@ -193,7 +193,7 @@
 
                 <li>
                     <a href="/pengadaan"
-                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-[#9fc088] group">
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <svg class="w-[24px] h-[24px] text-gray-800 dark:text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                             viewBox="0 0 24 24">
@@ -215,7 +215,7 @@
             <div class="">
                 <form action="{{ route('admin.search') }}" method="GET" class="max-w-lg mx-auto">
                     <label for="default-search"
-                        class="mb-2 text-sm font-medium text-[#9fc088] sr-only dark:text-white">Search</label>
+                        class="mb-2 text-sm font-medium text-gray-800 sr-only dark:text-white">Search</label>
                     <div class="relative">
                         <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                             <svg class="w-4 h-4 text-gray-700 dark:text-gray-400" aria-hidden="true"
@@ -225,7 +225,7 @@
                             </svg>
                         </div>
                         <input type="text" name= "search" id="default-search"
-                            class="block w-full p-4 ps-10 text-sm text-black border border-gray-700 rounded-lg bg-gray-700 dark:bg-[#9fc088] dark:border-gray-800 dark:placeholder-gray-700 dark:text-black"
+                            class="block w-full p-4 ps-10 text-sm text-white border border-gray-700 rounded-lg bg-gray-700 dark:bg-gray-700 dark:border-gray-800 dark:placeholder-gray-700 dark:text-white"
                             placeholder="Search Books..." value="{{ $query ?? '' }}" required />
                         <input type="hidden" name ="page" value="admin">
                         <button type="submit"
@@ -255,22 +255,22 @@
                     class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
                         <tr>
-                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-[#87a472]">Judul</th>
-                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-[#87a472]">ID Buku
+                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">Judul</th>
+                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">ID Buku
                             </th>
-                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-[#87a472]">Penulis
+                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">Penulis
                             </th>
-                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-[#87a472]">Penerbit
+                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">Penerbit
                             </th>
-                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-[#87a472]">Tahun
+                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">Tahun
                                 Terbit
                             </th>
-                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-[#87a472]">Genre</th>
-                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-[#87a472]">Deskripsi
+                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">Genre</th>
+                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">Deskripsi
                             </th>
-                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-[#87a472]">Stok</th>
-                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-[#87a472]">ISBN</th>
-                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-[#87a472]">Aksi</th>
+                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">Stok</th>
+                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">ISBN</th>
+                            <th scope="col" class="px-6 py-3 text-gray-50 bg-gray-50 dark:bg-gray-700">Aksi</th>
                         </tr>
                     </thead>
                     <tbody id="booksTableBody">

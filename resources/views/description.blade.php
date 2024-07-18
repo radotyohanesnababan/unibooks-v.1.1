@@ -37,9 +37,9 @@
                     </a>
                 </div>
                 <div class="flex items-center">
-                    <a href="/">
+                    <a href="/usersearch">
                         <div class="ml-7">
-                            <button type="submit" method="POST"
+                            <button type="submit"
                                 class="inline-flex items-center px-5 py-1.5 text-sm font-medium text-center text-white bg-red-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-red-900">
                                 Back
                             </button>
@@ -95,7 +95,7 @@
                     <li class="mb-4 flex hover:bg-gray-200">
                         <button onclick="window.location.href='/books/{{ $random->id_buku }}'">
                             <li class="mb-1 flex">
-                                <img src="https://via.placeholder.com/50" alt="Cover Majalah" class="w-12 h-16 mr-2">
+                                <img src="{{ asset ('storage/coverimage/' . $random->coverimage) }}" alt="{{ $books->judul }}" class="w-12 h-16 mr-2">
                                 <div class="flex text-left">
                                     <a href="/books/{{ $random->id_buku }}">{{ $random->judul }}</a>
                                 </div>
