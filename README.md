@@ -28,7 +28,7 @@
 
 ## Cara Instalasi
 1. Download Branch master, bisa menggunakan Git Bash atau Download ZIP
-2. Jalankan di terminal VSCode ```npm install```, ```composer install```, dan ```composer update```
+2. Jalankan di terminal VSCode ```npm install```, ```composer install```, ```composer update```, dan ```php artisan storage:link```
 4. Jika memakai laragon, masukkan folder proyek ke folder C:/laragon/www/
 
 
