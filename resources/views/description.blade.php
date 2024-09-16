@@ -31,7 +31,7 @@
                         </svg>
                     </button>
                     <a href="https://flowbite.com" class="flex ms-2 md:me-24">
-                        <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 me-3" alt="FlowBite Logo" />
+                        <img src="{{ asset('storage/LogoBook.jpg') }}" class="h-8 me-3" alt="FlowBite Logo" />
                         <span
                             class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Unibooks</span>
                     </a>
@@ -41,21 +41,11 @@
                         <div class="ml-7">
                             <button type="submit"
                                 class="inline-flex items-center px-5 py-1.5 text-sm font-medium text-center text-white bg-red-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-red-900">
-                                Back to Home
+                                Kembali
                             </button>
 
                         </div>
                     </a>
-                    @auth
-                        <a href="/">
-                            <div class="ml-7">
-                                <button type="submit"
-                                    class="inline-flex items-center px-5 py-1.5 text-sm font-medium text-center text-white bg-red-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-red-900">
-                                    Back to Admin
-                                </button>
-                            </div>
-                        </a>
-                    @endauth
                 </div>
             </div>
         </div>

@@ -9,7 +9,6 @@
     <title>UniBooks Store</title>
     <style>
         .parallax {
-            background-image: url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg');
             height: 500px;
             background-attachment: fixed;
             background-position: center;
@@ -23,14 +22,14 @@
             padding: 100px 0;
         }
     </style>
-    <link rel="stylesheet" href="{{ asset('css/userhome.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url('css/userhome.css') }}" >
 </head>
 
 <body>
     <nav class="bg-white dark:bg-gray-900 fixed w-full z-50 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="{{ asset('storage/1721208666.png') }}" class="h-10 w-10" alt="Logo" />
+                <img src="{{ asset('storage/LogoBook.jpg') }}" class="h-10 w-10" alt="Logo" />
             </a>
             <button data-collapse-toggle="navbar-default" type="button"
                 class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -65,6 +64,11 @@
                             class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                             aria-current="#about">About</a>
                     </li>
+                    <li>
+                        <a href="#about"
+                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                            aria-current="#about">About</a>
+                    </li>
                     {{-- <li>
                         <a href="/usersearch"
                             class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
@@ -77,13 +81,13 @@
 
 
     <section id="home" class="parallax h-screen flex justify-center items-center bg-cover bg-center bg-no-repeat"
-        style="background-image: url('../storage/1721208666.png')">
+        style="background-image: url('../storage/Book.png')">
         <div class="parallax-content text-center px-4 sm:px-16 lg:px-48">
             <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
                 UniBooks Store</h1>
             <p class="mb-8 text-lg font-normal text-white lg:text-xl">Temukan Petualangan Tanpa Batas di Setiap Buku
                 yang Anda Baca.</p>
-            <form class="max-w-md mx-auto" action="{{ route('resultbook') }}" method="GET" >
+            <form class="max-w-md mx-auto" action="{{ route('resultbook') }}" method="GET">
                 <label for="default-search"
                     class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                 <div class="relative">
@@ -94,7 +98,8 @@
                                 d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                         </svg>
                     </div>
-                    <input type="search" required id="search" name="query" type="text" value="{{ $query ?? '' }}"
+                    <input type="search" required id="search" name="query" type="text"
+                        value="{{ $query ?? '' }}"
                         class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Cari Buku Disini.." />
                     <button type="submit"
@@ -289,6 +294,20 @@
                 <h3>Contact</h3>
                 <p>Email: Cs@Unibooks.com</p>
                 <p>Phone: +62 1263 4567 6576</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com" target="_blank">
+                        <i class="fab fa-facebook-f"></i><span>UniBooks</span>
+                    </a>
+                    <a href="https://www.instagram.com" target="_blank">
+                        <i class="fab fa-instagram"></i><span>UniBooks</span>
+                    </a>
+                    <a href="https://www.twitter.com" target="_blank">
+                        <i class="fab fa-twitter"></i><span>UniBooks</span>
+                    </a>
+                    <a href="https://wa.me/62126345676576" target="_blank">
+                        <i class="fab fa-whatsapp"></i><span>UniBooks</span>
+                    </a>
+                </div>
             </div>
             <div class="address-map">
                 <div class="address">
@@ -303,18 +322,9 @@
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
-            <div class="signup">
-                <h3>Sign Up Here</h3>
-                <form>
-                    <input type="text" placeholder="Name">
-                    <input type="email" placeholder="Email">
-                    <input type="text" placeholder="Address">
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
         </div>
+        <p class="copyright">&copy; <span>2024</span> Informatika ITERA. All Rights Reserved.</p>
     </footer>
-
 
 </body>
 

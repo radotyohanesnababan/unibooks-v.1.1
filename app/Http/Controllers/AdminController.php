@@ -40,17 +40,13 @@ class AdminController extends Controller
             'isbn' => 'required|string|max:13',
             'coverimage'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000'
         ]);
-        
-
         $publisher = publisher::where('nama_penerbit', $request->input('nama_penerbit'))->first();
 
         if ($request->hasFile('coverimage')) {
             $coverimage = $request->file('coverimage');
             $coverimagename = time() . '.' . $coverimage->getClientOriginalExtension();
             $coverimage->storeAs('public/coverimage', $coverimagename);
-            
         }
-
         $books = new books();
         $books->judul = $request->judul;
         $books->penulis = $request->penulis;
@@ -64,7 +60,6 @@ class AdminController extends Controller
         $books->save();
         notify()->success('Buku berhasil disimpan!');
         return redirect()->route('get_books');
-        //return response()->json(['message' => 'Data buku berhasil disimpan'], 201);
     }
 
     public function destroy( $id_buku){
@@ -74,8 +69,9 @@ class AdminController extends Controller
         $books->delete(); 
         
         notify()->success('Buku berhasil dihapus!');
-        return redirect()->route('get_books')->with(['success'=>'Buku berhasil dihapus!']);
+        return redirect()->route('get_books');
     }
+
     public function update(Request $request, $id_buku){
         // dd($request->all());
         $books=books::findOrFail($id_buku);

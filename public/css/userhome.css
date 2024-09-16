@@ -102,81 +102,58 @@ header nav ul li a {
     background-color: #f4f4f4;
 }
 
-
-footer {
-    background-color: #333;
-    color: #fff;
-    padding: 40px 20px; /* Tambahkan padding atas dan bawah 40px, kiri dan kanan 20px */
-    text-align: center;
-}
-
 .footer-content {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    flex-wrap: wrap; /* Untuk memastikan layout tetap rapi di layar yang lebih kecil */
+}
+
+.contact, .address {
+    max-width: 400px;
+    margin-bottom: 20px;
+}
+
+.address {
     text-align: left;
 }
 
-.contact, .address-map, .signup {
-    flex: 1;
-    min-width: 300px; /* Lebar minimum setiap bagian */
-    margin: 10px; /* Jarak antara setiap bagian */
-}
-
-.contact h3, .address h3, .signup h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.address-map {
-    display: flex;
-    flex-direction: column; /* Mengatur address dan map secara vertikal */
-}
-
 .map-container {
-    align-items: center;
-    margin-top: 20px;
-    width: 80%; /* Lebar peta */
-    height: 250px; /* Tinggi peta */
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Tambahkan bayangan untuk estetika */
+    margin-left: 15px;
 }
 
-.map-container iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-.signup h3{
-    align-items: center ;
-}
-.signup form {
+.social-icons {
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    
 }
 
-.signup input, .signup button {
-    padding: 10px;
-    width: 80%;
-    max-width: 800%; /* Lebar maksimum input dan button */
-    border: none;
-    border-radius: 5px;
+.social-icons a {
+    color: white;
+    margin-right: 10px;
+    font-size: 20px;
+    transition: color 0.3s;
 }
 
-.signup button {
-    background-color: #ff9900;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border-radius: 5px;
+.social-icons a span{
+    margin-left: 5px;
 }
 
-.signup button:hover {
-    background-color: #e68a00;
+.social-icons a:hover {
+    color: #ddd;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+footer .copyright {
+    margin-top: 40px;
+    font-size: 14px;
 }
 
 
@@ -188,7 +165,7 @@ footer {
 }
 
 @media (max-width: 768px) {
-   
+
     .new-container {
         flex-direction: column;
         align-items: center;
@@ -196,6 +173,11 @@ footer {
 
     .new-item {
         width: 90%;
+    }
+
+    .footer-content {
+        flex-direction: column; /* Mengubah tata letak menjadi kolom */
+        align-items: center; /* Menyelaraskan elemen ke tengah */
     }
 }
 
@@ -205,7 +187,7 @@ footer {
         flex-direction: column;
         align-items: flex-start;
         background-color: rgba(0, 0, 0, 0.5);
-        
+
     }
 
     .logo {

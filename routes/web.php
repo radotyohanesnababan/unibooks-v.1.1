@@ -33,6 +33,14 @@ Route::post('/register', [RegisterController::class, 'actionregister'])->name('a
 
 //aksi
 
+//add-books
+Route::post('/admin', [AdminController::class, 'store'])->name('store_books');
+//delete
+Route::delete('/books/{id_buku}', [AdminController::class, 'destroy'])->name('buku.destroy');
+//update
+Route::put('books/{id_buku}', [AdminController::class, 'update'])->name('books.update');
+//show-books-detail
+Route::get('/books/{id_buku}', [booksController::class, 'show'])->name('buku.show');
 //search-books-page
 Route::get('/books',[booksController::class, 'search'])->name('home.search');
 //search-admin-page
@@ -42,16 +50,7 @@ Route::get('/pengadaan/books',[booksController::class, 'search'])->name('pengada
 
 
 
-//add-books
-Route::post('/admin', [AdminController::class, 'store'])->name('store_books');
-//add-publisher
-Route::post('/publisher',[publisherController::class, 'store']);
-//delete
-Route::delete('/books/{id_buku}', [AdminController::class, 'destroy'])->name('buku.destroy');
-//update
-Route::put('books/{id_buku}', [AdminController::class, 'update'])->name('books.update');
-//show-books-detail
-Route::get('/books/{id_buku}', [booksController::class, 'show'])->name('buku.show');
-
 //viewbookaspenerbit
 Route::get('/bookaspenerbit/{id_penerbit}', [booksController::class, 'bookaspenerbit'])->name('viewaspenerbit');
+//add-publisher
+Route::post('/publisher',[publisherController::class, 'store']);
